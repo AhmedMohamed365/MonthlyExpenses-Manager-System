@@ -1,0 +1,42 @@
+#include "expenses.h"
+#include <string>
+expenses::expenses() {
+	capacity = 5;
+	expenses_count = 0;
+	expenses_list = new exspense_info[capacity];
+}
+string expenses::get_category() {
+	return expenses_list->category;
+}
+void expenses::get_date(int i) {
+	cout << expenses_list[i].day << " / " << expenses_list[i].month << " / " << expenses_list[i].year << endl;
+}
+void expenses::add_expense(string icategory,int iday,int imonth,int iyear) {
+	if (expenses_count == capacity) {
+		expand();
+	}
+	
+		expenses_list[expenses_count].category = icategory;
+		expenses_list[expenses_count].day = iday;
+		expenses_list[expenses_count].month = imonth;
+		expenses_list[expenses_count].year = iyear;
+		expenses_count++;
+
+}
+void expenses::expand() {
+	exspense_info* new_expenses_list = new exspense_info[capacity+2];
+	for (int i = 0;i < expenses_count;i++) {
+		new_expenses_list[i] = expenses_list[i];
+	}
+	capacity = capacity + 2;
+	delete[] expenses_list;
+	expenses_list = new_expenses_list;
+}
+
+void expenses::display_data() {
+	for (int i = 0; i < expenses_count;i++) {
+		cout << "category :" << expenses_list[i].category<<" ";
+		cout << "date : ";
+		get_date(i);
+	}
+}

@@ -1,0 +1,5 @@
+Debit card 
+
+amount 1250
+
+expenses:

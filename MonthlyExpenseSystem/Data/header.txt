@@ -1,0 +1,25 @@
+#pragma once
+#include <iostream>
+using namespace std;
+#include<string>
+#include <string.h>
+class expenses
+{  public:
+	struct exspense_info {
+		string category;
+		float amount;
+		int day, month, year;
+	};
+	int capacity;
+	exspense_info* expenses_list;
+	int expenses_count;
+public :
+	expenses();
+	void display_data();
+	string get_category();
+	void get_date(int i);
+	void expand();
+	void add_expense(string icategory, int idate, int imonth, int iyear);
+	
+};
+
