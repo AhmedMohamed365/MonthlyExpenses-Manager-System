@@ -18,6 +18,7 @@
 
 #include "Expense.h"
 
+#include "wallet.h"
 using namespace std;
 namespace fs = std::filesystem;
 
@@ -25,39 +26,41 @@ namespace fs = std::filesystem;
 
 
 
-class Wallet
-{
 
-};
 
 class FileHandler {
 private:
 	fstream textFile;
-	int noflines ; // gets this number to give it to number of expenses
+	int nofExpenses ; // gets this number to give it to number of expenses
 	int nofWallets ; // num of wallets exist in the folder
 
 
 
-
 public:
-	//expenses section
+	//expense section
+	vector<string> split(string s, string del = ",");
+	
+	void countExpenses();
 
-	void addExpense(Expense expense);
+		
+	
+	void saveExpense(exspense_info info);
 
-	void editExpense(Expense expense);
+	void eraseExpense(Expense expense);
 
-	void deleteExpense(Expense expense);
+	void rewriteExpense(Expense expense);
 
+	vector<Expense> loadWallet(string walletFile);
 //wallet section
 	void makeWallet(string name);
 
 	Wallet findWallet(string walletName);
 
-	void readAllWallets();
+	void scanAllWallets();
 
 	void deleteWallet(Wallet wallet);
 
-	void loadWallet(string walletName);
+	//void loadWallet(string walletName);
 
 
 

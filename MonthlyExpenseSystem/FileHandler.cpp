@@ -8,18 +8,106 @@
 #include "FileHandler.h"
 //expenses section
 
-	void FileHandler:: addExpense(Expense expense)
+vector<string> FileHandler::split(string s, string del)
+{
+	int start = 0;
+	int end = s.find(del);
+	int i = 0;
+	vector<string> items(6);
+	while (end != -1) {
+		items[i] = s.substr(start, end - start);
 
+		start = end + del.size();
+		end = s.find(del, start);
+
+		i++;
+	}
+
+	items[i] =  s.substr(start, end - start);
+
+
+	return items;
+}
+
+void FileHandler::countExpenses()
+{
+	textFile.open("Data\\wallet.txt");
+
+	int begin = 0;
+
+	string line;
+
+	if (textFile.is_open())
+	{
+
+		while (getline(textFile,line,';'))
+		{
+			nofExpenses++;
+
+			cout << "Number of expenses" << nofExpenses;
+		}
+
+		textFile.close();
+	}
+	
+}
+
+void FileHandler:: saveExpense(exspense_info info)
+
+	{
+		textFile.open("Data\\wallet.txt", ios::app);
+
+		if (textFile.is_open())
+		{
+			
+
+		textFile << info.date << ',' << info.description 
+
+			<< ',' << info.category << ',' << info.amount << ',' << info.price << ',' << info.name << ';';
+
+					
+		textFile.close();
+		}
+	}
+
+	void  FileHandler:: rewriteExpense(Expense expense)
 	{
 
 	}
 
-	void  FileHandler:: editExpense(Expense expense)
+	vector<Expense> FileHandler::loadWallet(string walletName)
 	{
+		
+		vector <Expense> expenses (nofExpenses);
 
+
+		textFile.open("Data\\wallet.txt");
+		
+		string line;
+		if (textFile.is_open())
+		{
+			int i = 0;
+			while (getline(textFile,line,';'))
+			{
+				exspense_info expenseInfo(split(line, ","));
+
+				expenses[i] = Expense(expenseInfo);
+
+				cout << line;
+				i++;
+			}
+
+			
+			textFile.close();
+
+		}
+		
+
+
+		return expenses;
 	}
 
-	void  FileHandler:: deleteExpense(Expense expense)
+	void  FileHandler:: eraseExpense(Expense expense)
 	{
 
 	}
@@ -41,7 +129,7 @@
 			{
 				foundedWallet = entry.path().filename().string();
 
-				cout << "the wallet     : " << foundedWallet << " has ben found";
+				cout << "the wallet     : " << foundedWallet << " has been found";
 				break;
 			}
 			
@@ -50,7 +138,7 @@
 		}
 
 
-
+		// needs to be revised
 		Wallet wallet;
 
 		if (foundedWallet == "")
@@ -67,20 +155,28 @@
 
 	}
 
-	void FileHandler::  readAllWallets()
+	void FileHandler::  scanAllWallets()
 	{
 
 		// this gets all the wallets names
-		string path = "C:\\Users\\Ahmed\\source\\repos\\MonthlyExpenseSystem\\MonthlyExpenseSystem\\Data";
-		for (const auto& entry : fs:: directory_iterator(path))
+		string path = "C:\\Users\\mercy\\source\\repos\\MonthlyExpenses-Manager-System\\MonthlyExpenseSystem\\Data";
+		for (const auto& entry : fs::directory_iterator(path))
+		{
 			std::cout << entry.path().filename() << std::endl;
+
+
+			nofWallets++;
+		}
+
+		cout << "Number of wallets found : " << nofWallets;
+			
 	}
 
 	void FileHandler::   deleteWallet(Wallet wallet)
 	{
 
 	}
-
+	/*
 	void FileHandler::loadWallet(string walletFile)
 	{
 		walletFile = "Data\\" + walletFile;
@@ -96,7 +192,11 @@
 		{
 			while (getline(textFile, line))
 			{
+
+				
 				cout << line << '\n';
+
+
 			}
 
 			textFile.close();
@@ -104,6 +204,8 @@
 
 
 	}
+
+	*/
 
 
 void FileHandler::  makeWallet( string name)
@@ -114,14 +216,25 @@ void FileHandler::  makeWallet( string name)
 
 
 	//should check here if the file is already there
-	 ofstream WalletFile(name,ios::app);
+	 fstream WalletFile(name,ios::app);
+	 WalletFile.seekg(0, ios::end);
+	 bool empty = WalletFile.tellg();
+
+	 if (empty)
+	 {
+		 int income = 1000;
+		 Wallet wallet(name,1000);
+		 WalletFile << income;
+		
+	 }
+
 }
 
 FileHandler::FileHandler() {
 	// TODO Auto-generated constructor stub
 
 	nofWallets = 0;
-	noflines = 0;
+	nofExpenses = 0;
 
 }
 

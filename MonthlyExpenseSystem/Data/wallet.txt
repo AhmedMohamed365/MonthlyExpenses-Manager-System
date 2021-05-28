@@ -1,5 +1,13 @@
-Debit card 
-
-amount 1250
-
-expenses:
+5-11-2020,I bought it to to make omlets 
+  I want to help in making that,dinner,5,1,EGGS;5-11-2020,I bought it to to make omlets 
+  I want to help in making that,dinner,5,1,EGGS;5-11-2020,I bought it to to make omlets 
+  I want to help in making that,dinner,5,1,EGGS;5-11-2020,I bought it to to make omlets 
+  I want to help in making that,dinner,5,1,EGGS;5-11-2020,I bought it to to make omlets 
+  I want to help in making that,dinner,5,1,EGGS;5-11-2020,I bought it to to make omlets 
+  I want to help in making that,dinner,5,1,EGGS;5-11-2020,I bought it to to make omlets 
+  I want to help in making that,dinner,5,1,EGGS;5-11-2020,I bought it to to make omlets 
+  I want to help in making that,dinner,5,1,EGGS;5-11-2020,I bought it to to make omlets 
+  I want to help in making that,dinner,5,1,EGGS;5-11-2020,I bought it to to make omlets 
+  I want to help in making that,dinner,5,1,EGGS;5-11-2020,I bought it to to make omlets 
+  I want to help in making that,dinner,5,1,EGGS;5-11-2020,I bought it to to make omlets 
+  I want to help in making that,dinner,5,1,EGGS;

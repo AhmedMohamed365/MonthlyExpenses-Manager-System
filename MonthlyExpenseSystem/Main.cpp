@@ -3,13 +3,29 @@
 #include "Expense.h"
 #include "FileHandler.h"
 using namespace std;
-void main() {
-
+int main() {
 
 	
-	cout << "Hello";
-
-
+	exspense_info info("EGGS", "I bought it to to make omlets \n  I want to help in making that", "dinner",5, 1, 5 , 11 , 2020);
+	Expense expense(info);
+	
+	
+	
+	FileHandler handler;
+	
+	
+	handler.saveExpense(info);
+	handler.saveExpense(info);
+	handler.saveExpense(info);
+	handler.countExpenses();
+	vector<Expense> expenses = handler.loadWallet("wallet.txt");
+	for (int i = 0; i < expenses.size(); i++)
+	{
+		expenses[i].display_data();
+		cout << endl;
+	}
+	
+	return 0;
 }
 
 

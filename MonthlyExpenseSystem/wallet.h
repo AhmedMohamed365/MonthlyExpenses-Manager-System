@@ -9,9 +9,20 @@ private:
 	int income;
 public:
 	Wallet();
+	Wallet(string Walletname, int totalMoney);
+
+	//expenses section
+
+	void addExpense(Expense expense);
+
+	void editExpense(Expense expense);
+
+	void deleteExpense(Expense expense);
 
 
 	void viewExpenses(vector<Expense> allExpenses);
+
+	
 
 	//see if there is left money to buy anything
 	bool checkWallet();

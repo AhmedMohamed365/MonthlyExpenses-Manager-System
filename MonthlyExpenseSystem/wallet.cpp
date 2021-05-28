@@ -1,5 +1,15 @@
 #include "wallet.h"
 
+Wallet::Wallet()
+{
+}
+
+Wallet::Wallet(string Walletname, int totalMoney)
+{
+    this->WalletName = WalletName;
+    income = totalMoney;
+}
+
 void Wallet::viewExpenses(vector<Expense> allExpenses)
 {
 
@@ -20,4 +30,8 @@ bool Wallet::checkWallet()
         return true;
 
     return false;
+}
+
+Wallet::~Wallet()
+{
 }

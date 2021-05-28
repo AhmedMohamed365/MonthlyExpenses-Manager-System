@@ -4,10 +4,16 @@
 
 
 
-Expense::Expense() {
-	capacity = 5;
-	expenses_count = 0;
-	expenses_list = new exspense_info[capacity];
+Expense::Expense()
+{
+
+}
+
+
+
+Expense::Expense(exspense_info info)
+{
+	this->info = info;
 }
 
 void Expense::display_data()
@@ -17,24 +23,36 @@ void Expense::display_data()
 		float amount  , price;
 		int day, month, year;
 	*/
-	for (int i = 0; i < 6; i++)
-	{
+	
 		// needs to be modified ( date should be one coulm)
-		cout << expenses_list->name << expenses_list->category <<
-			expenses_list->amount << expenses_list->price << endl
-		<< expenses_list->description << endl
-		<< expenses_list->year;
-	}
+	cout << endl <<"*********************\n";
+	
+		cout << info.name +'\t' << info.category + '\t' <<
+			info.amount + '\t' << info.price  << endl
+			<< info.description << endl
+			<< info.date;
+	
 }
 
 
 
 
-
-string Expense::get_category() {
-	return expenses_list->category;
-}
-
+//
+//string Expense::get_category() {
+//	return expenses_list->category;
+//}
+//
+//
+//string Expense::get_data()
+//{
+//	return expenses_list->name + ',' + expenses_list->category + ',' + ',' + to_string((expenses_list->amount)) + ',' + to_string(expenses_list->price)
+//		+ '\n' +
+//		expenses_list->description
+//		+ '\n' +
+//		to_string(expenses_list->day) + '-' + to_string(expenses_list->month) + '-' + to_string(expenses_list->year );
+//
+//}
+//
 
 
 
