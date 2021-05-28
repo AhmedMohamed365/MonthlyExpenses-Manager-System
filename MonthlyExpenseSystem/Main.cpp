@@ -7,7 +7,7 @@ using namespace std;
 int main() {
 
 	filter filter;
-	exspense_info info("EGGS", "I bought it to to make omlets \n  I want to help in making that", "dinner",5, 1, 5 , 11 , 2020);
+	exspense_info info("EGGS", "I bought it to to make omlets \n  I want to help in making that", "mufin",2, 1, 5 , 11 , 2020);
 	Expense expense(info);
 	
 	
@@ -21,7 +21,8 @@ int main() {
 	handler.countExpenses();
 	vector<Expense> expenses = handler.loadWallet("wallet.txt");
 
-	filter.
+	expenses = filter.filter_category(expenses, "dinner");
+
 	for (int i = 0; i < expenses.size(); i++)
 	{
 		expenses[i].display_data();

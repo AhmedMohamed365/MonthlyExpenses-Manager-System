@@ -61,7 +61,7 @@ string Expense::get_data()
 
 string Expense::get_date() {
 
-	cout << info.date;
+	return info.date;
 }
 
 
