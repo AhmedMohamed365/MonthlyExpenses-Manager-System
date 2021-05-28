@@ -38,60 +38,38 @@ void Expense::display_data()
 
 
 //
-//string Expense::get_category() {
-//	return expenses_list->category;
-//}
-//
-//
-//string Expense::get_data()
-//{
-//	return expenses_list->name + ',' + expenses_list->category + ',' + ',' + to_string((expenses_list->amount)) + ',' + to_string(expenses_list->price)
-//		+ '\n' +
-//		expenses_list->description
-//		+ '\n' +
-//		to_string(expenses_list->day) + '-' + to_string(expenses_list->month) + '-' + to_string(expenses_list->year );
-//
-//}
-//
-
-
-
-
-/*
-
-void Expense::get_date(int i) {
-	cout << expenses_list[i].day << " / " << expenses_list[i].month << " / " << expenses_list[i].year << endl;
-}
-void Expense::add_expense(string icategory, int iday, int imonth, int iyear) {
-	if (expenses_count == capacity) {
-		expand();
-	}
-
-	expenses_list[expenses_count].category = icategory;
-	expenses_list[expenses_count].day = iday;
-	expenses_list[expenses_count].month = imonth;
-	expenses_list[expenses_count].year = iyear;
-	expenses_count++;
-
-}
-void Expense::expand() {
-	exspense_info* new_expenses_list = new exspense_info[capacity + 2];
-	for (int i = 0; i < expenses_count; i++) {
-		new_expenses_list[i] = expenses_list[i];
-	}
-	capacity = capacity + 2;
-	delete[] expenses_list;
-	expenses_list = new_expenses_list;
+string Expense::get_category() {
+	return info.category;
 }
 
- Expense::display_data() {
-	for (int i = 0; i < expenses_count; i++) {
-		cout << "category :" << expenses_list[i].category << " ";
-		cout << "date : ";
-		get_date(i);
-	}
+
+string Expense::get_data()
+{
+	return info.name + ',' + info.category + ',' + ',' + to_string((info.amount)) + ',' + to_string(info.price)
+		+ '\n' +
+		info.description
+		+ '\n' +
+		to_string(info.day) + '-' + to_string(info.month) + '-' + to_string(info.year );
+
 }
 
 
 
-*/
+
+
+
+
+string Expense::get_date() {
+
+	cout << info.date;
+}
+
+
+//@Ahmed Huessin continue these last getters from the Expense.h defintion 
+
+
+
+
+
+
+

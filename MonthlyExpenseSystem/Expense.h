@@ -63,6 +63,7 @@ public:
 	string get_category();
 	string get_data();
 	//void expand();
+	string get_date();
 	
 	//void add_expense(string icategory, int idate, int imonth, int iyear);
 
