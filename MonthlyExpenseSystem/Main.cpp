@@ -2,10 +2,11 @@
 #include<string>
 #include "Expense.h"
 #include "FileHandler.h"
+#include "filter.h"
 using namespace std;
 int main() {
 
-	
+	filter filter;
 	exspense_info info("EGGS", "I bought it to to make omlets \n  I want to help in making that", "dinner",5, 1, 5 , 11 , 2020);
 	Expense expense(info);
 	
@@ -19,6 +20,8 @@ int main() {
 	handler.saveExpense(info);
 	handler.countExpenses();
 	vector<Expense> expenses = handler.loadWallet("wallet.txt");
+
+	filter.
 	for (int i = 0; i < expenses.size(); i++)
 	{
 		expenses[i].display_data();
