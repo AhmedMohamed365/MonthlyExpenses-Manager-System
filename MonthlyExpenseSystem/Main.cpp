@@ -1,7 +1,7 @@
 #include <iostream>
 #include<string>
-#include "Expense.h"
-#include "FileHandler.h"
+//#include "Expense.h"
+//#include "FileHandler.h"
 #include "filter.h"
 using namespace std;
 string choice = "- 1";
@@ -9,7 +9,7 @@ FileHandler handler;
 bool menu();
 exspense_info validData();
 int main() {
-
+	
 	handler.findWallet("wallet.txt");
 	vector<Expense> expenses = handler.loadWallet("wallet.txt");
 	filter filter;

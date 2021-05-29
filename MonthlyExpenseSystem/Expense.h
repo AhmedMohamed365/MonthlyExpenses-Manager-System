@@ -4,6 +4,7 @@
 #include<string>
 #include <string.h>
 #include<vector>
+//#include "FileHandler.h"
 using namespace std;
 
 
@@ -31,13 +32,13 @@ struct exspense_info {
 		name = info[5];
 		
 		vector<string> dateInfo(3);
-		dateInfo = FileHandler::split(info[6],"-");
+		/*dateInfo = FileHandler::split(info[6],"-");
 
 		day = stoi(dateInfo[0]);
 
 		month = stoi(dateInfo[1]);
 
-		year = stoi(dateInfo[2]);
+		year = stoi(dateInfo[2]);*/
 
 		
 	}
