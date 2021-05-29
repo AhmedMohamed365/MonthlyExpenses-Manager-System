@@ -10,6 +10,11 @@ bool menu();
 exspense_info validData();
 int main() {
 	
+
+	//Wallet wallet("wallet.txt",1500);
+	//wallet.saveIncome(1500.506);
+
+	//cout<<"wallet.txt incom is : "<< wallet.loadIncome("wallet.txt");
 	handler.findWallet("wallet.txt");
 	vector<Expense> expenses = handler.loadWallet("wallet.txt");
 	filter filter;
@@ -22,7 +27,7 @@ int main() {
 		expenses[i].display_data();
 		cout << endl;
 	}
-	//while (menu());
+	while (menu());
 	return 0;
 }
 bool menu()

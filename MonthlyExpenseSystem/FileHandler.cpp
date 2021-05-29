@@ -133,7 +133,7 @@ void FileHandler:: saveExpense(exspense_info info)
 		string foundedWallet = "";
 
 		// this gets all the wallets names
-		string path = "C:\\Users\\mercy\\source\\repos\\MonthlyExpenses-Manager-System\\MonthlyExpenseSystem\\Data";
+		string path = "C:\\Users\\Ahmed\\source\\repos\\MonthlyExpenseSystem\\MonthlyExpenseSystem\\Data";
 		for (const auto& entry : fs::directory_iterator(path))
 		{
 			foundedWallet = entry.path().filename().string();
@@ -220,7 +220,9 @@ void FileHandler:: saveExpense(exspense_info info)
 	*/
 
 
-void FileHandler::  makeWallet( string name)
+
+
+	void FileHandler::  makeWallet( string name)
 {
 //output the txt file with wallet name
 	name = "Data\\" + name;
@@ -229,16 +231,7 @@ void FileHandler::  makeWallet( string name)
 
 	//should check here if the file is already there
 	 fstream WalletFile(name,ios::app);
-	 WalletFile.seekg(0, ios::end);
-	 bool empty = WalletFile.tellg();
-
-	 if (empty)
-	 {
-		 int income = 1000;
-		 Wallet wallet(name,1000);
-		 WalletFile << income;
-		
-	 }
+	
 
 }
 

@@ -10,6 +10,14 @@ Wallet::Wallet(string Walletname, int totalMoney)
     income = totalMoney;
 }
 
+void Wallet::saveIncome(float income)
+{
+
+    fstream incomes("Data\\incomes.txt", ios::app);
+
+    incomes << WalletName <<' ' << income << endl;
+}
+
 void Wallet::viewExpenses(vector<Expense> allExpenses)
 {
 

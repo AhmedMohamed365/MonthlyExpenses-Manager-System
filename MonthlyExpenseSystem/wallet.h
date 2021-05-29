@@ -1,6 +1,7 @@
 
 #include "Expense.h"
 #include <vector>
+#include <fstream>
 
 class Wallet
 {
@@ -8,11 +9,15 @@ class Wallet
 private:
 	string WalletName;
 	vector<Expense>  expenses;
-	int income;
+	float income;
 public:
 	Wallet();
 	Wallet(string Walletname, int totalMoney);
 
+
+	void saveIncome(float income);
+
+	//float loadIncome(string walletName);
 	//expenses section
 
 	void addExpense(Expense expense);
