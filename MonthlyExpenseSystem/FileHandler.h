@@ -5,9 +5,11 @@
  *      Author: mercy
  * 
  * 
-#ifndef FILEHANDLER_H_
-#define FILEHANDLER_H_
+
  */
+
+#ifndef FileHandler_H
+#define FileHandler_H
 
 
 
@@ -17,6 +19,7 @@
 #include <fstream>
 
 #include "Expense.h"
+
 
 #include "wallet.h"
 using namespace std;
@@ -77,4 +80,6 @@ public:
 	virtual ~FileHandler();
 };
 
+
+#endif
 

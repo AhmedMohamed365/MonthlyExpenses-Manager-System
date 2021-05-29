@@ -1,4 +1,11 @@
+
+
+
 #include "wallet.h"
+
+#include <fstream>
+
+
 
 Wallet::Wallet()
 {
@@ -16,6 +23,48 @@ void Wallet::saveIncome(float income)
     fstream incomes("Data\\incomes.txt", ios::app);
 
     incomes << WalletName <<' ' << income << endl;
+}
+
+float Wallet::loadIncome(string walletName)
+{
+
+	fstream textFile;
+	textFile.open("Data\\incomes.txt");
+
+	string line;
+	if (textFile.is_open())
+	{
+		
+		while (getline(textFile, line, ';'))
+		{
+			
+			vector<string>text = FileHandler::split(line, " ");
+
+			if (text[0] == walletName)
+			{
+				line = text[1];
+
+				break;
+			}
+			
+
+			cout << line;
+			
+		}
+
+
+		textFile.close();
+
+		return stof(line);
+
+	}
+
+
+	return(1);
+
+    
+
+
 }
 
 void Wallet::viewExpenses(vector<Expense> allExpenses)

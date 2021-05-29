@@ -1,7 +1,6 @@
 #include <iostream>
 #include<string>
-//#include "Expense.h"
-//#include "FileHandler.h"
+
 #include "filter.h"
 using namespace std;
 string choice = "- 1";
@@ -11,10 +10,10 @@ exspense_info validData();
 int main() {
 	
 
-	//Wallet wallet("wallet.txt",1500);
+	Wallet wallet("wallet.txt",1500);
 	//wallet.saveIncome(1500.506);
-
-	//cout<<"wallet.txt incom is : "<< wallet.loadIncome("wallet.txt");
+	float income = wallet.loadIncome("wallet.txt");
+	cout<<"wallet.txt incom is : "<< income;
 	handler.findWallet("wallet.txt");
 	vector<Expense> expenses = handler.loadWallet("wallet.txt");
 	filter filter;
