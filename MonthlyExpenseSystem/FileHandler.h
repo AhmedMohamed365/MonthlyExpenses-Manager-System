@@ -38,7 +38,7 @@ private:
 
 public:
 	//expense section
-	vector<string> split(string s, string del = ",");
+	static vector<string>  split(string s, string del = ",");
 	
 	void countExpenses();
 

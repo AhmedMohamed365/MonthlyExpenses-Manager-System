@@ -20,14 +20,26 @@ struct exspense_info {
 
 	exspense_info(vector<string> info)
 	{
-		this->name = info[0];
-		this->description = info[1];
+		date = info[0];
+		description = info[1];
 
-		this->category = info[2];
+		category = info[2];
 
-		this->amount = stof(info[3]);
+		amount = stof(info[3]);
 
-		this->price = stof(info[4]);
+		price = stof(info[4]);
+		name = info[5];
+		
+		vector<string> dateInfo(3);
+		dateInfo = FileHandler::split(info[6],"-");
+
+		day = stoi(dateInfo[0]);
+
+		month = stoi(dateInfo[1]);
+
+		year = stoi(dateInfo[2]);
+
+		
 	}
 	exspense_info(string name, string description, string category, float amount, float price, int day , int month,int year)
 	{
@@ -64,6 +76,7 @@ public:
 	string get_data();
 	//void expand();
 	string get_date();
+	int get_amount();
 	
 	//void add_expense(string icategory, int idate, int imonth, int iyear);
 

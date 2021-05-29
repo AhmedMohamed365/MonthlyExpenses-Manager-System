@@ -8,6 +8,8 @@
 #include "FileHandler.h"
 //expenses section
 
+
+
 vector<string> FileHandler::split(string s, string del)
 {
 	int start = 0;
@@ -23,7 +25,7 @@ vector<string> FileHandler::split(string s, string del)
 		i++;
 	}
 
-	items[i] =  s.substr(start, end - start);
+	items[i] = s.substr(start, end - start);
 
 
 	return items;
@@ -44,7 +46,7 @@ void FileHandler::countExpenses()
 		{
 			nofExpenses++;
 
-			cout << "Number of expenses" << nofExpenses;
+			//cout << "Number of expenses" << nofExpenses;
 		}
 
 		textFile.close();
@@ -77,8 +79,18 @@ void FileHandler:: saveExpense(exspense_info info)
 
 	vector<Expense> FileHandler::loadWallet(string walletName)
 	{
+
+		countExpenses();
+
+		vector <Expense> expenses(nofExpenses);
+		if (nofExpenses < 1)
+		{
+			cout << "Looks like you haven't register any expenses yet";
+			return   vector<Expense> (1);
+		}
 		
-		vector <Expense> expenses (nofExpenses);
+
+	
 
 
 		textFile.open("Data\\wallet.txt");
@@ -93,7 +105,7 @@ void FileHandler:: saveExpense(exspense_info info)
 
 				expenses[i] = Expense(expenseInfo);
 
-				cout << line;
+				//cout << line;
 				i++;
 			}
 
@@ -121,7 +133,7 @@ void FileHandler:: saveExpense(exspense_info info)
 		string foundedWallet = "";
 
 		// this gets all the wallets names
-		string path = "C:\\Users\\Ahmed\\source\\repos\\MonthlyExpenseSystem\\MonthlyExpenseSystem\\Data";
+		string path = "C:\\Users\\mercy\\source\\repos\\MonthlyExpenses-Manager-System\\MonthlyExpenseSystem\\Data";
 		for (const auto& entry : fs::directory_iterator(path))
 		{
 			foundedWallet = entry.path().filename().string();

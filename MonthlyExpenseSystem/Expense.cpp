@@ -61,7 +61,13 @@ string Expense::get_data()
 
 string Expense::get_date() {
 
+
 	return info.date;
+}
+
+int Expense::get_amount()
+{
+	return info.amount;
 }
 
 
