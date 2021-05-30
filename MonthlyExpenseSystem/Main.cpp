@@ -12,7 +12,9 @@ void LoadWithFilter();
 
 
 int main() {
-	while (menu());
+
+	Wallet::getTotalIncome();
+	//while (menu());
 	return 0;
 }
 

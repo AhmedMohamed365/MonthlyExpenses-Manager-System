@@ -134,7 +134,7 @@ void FileHandler:: saveExpense(exspense_info info)
 		string foundedWallet = "";
 
 		// this gets all the wallets names
-		string path = "C:\\Users\\Ahmed\\source\\repos\\MonthlyExpenseSystem\\MonthlyExpenseSystem\\Data";
+		string path = "C:\\Users\\mercy\\source\\repos\\\MonthlyExpenses-Manager-System\\MonthlyExpenseSystem\\Data";
 		for (const auto& entry : fs::directory_iterator(path))
 		{
 			foundedWallet = entry.path().filename().string();

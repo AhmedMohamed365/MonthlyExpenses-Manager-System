@@ -23,6 +23,9 @@ public:
 	void saveIncome(float income);
 
 	float loadIncome(string walletName);
+
+	// independant function of any exact wallet : returns all wallets' incomes
+	static float getTotalIncome(); 
 	//expenses section
 
 	void addExpense(Expense expense);
