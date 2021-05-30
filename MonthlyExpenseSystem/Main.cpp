@@ -13,7 +13,7 @@ int main() {
 	handler.findWallet("wallet.txt");
 	vector<Expense> expenses = handler.loadWallet("wallet.txt");
 	filter filter;
-	expenses = filter.filter_category(expenses, "dinner");
+	expenses = filter.filter_amount(expenses,2);
 
 	//expenses = filter.filter_amount(expenses, 2);
 
