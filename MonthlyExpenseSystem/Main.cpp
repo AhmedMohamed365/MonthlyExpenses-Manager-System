@@ -12,7 +12,7 @@ int main() {
 
 	Wallet wallet("wallet.txt",1500);
 	//wallet.saveIncome(1500.506);
-	float income = wallet.loadIncome("wallet.txt");
+	float income = wallet.loadIncome("credit card.txt");
 	cout<<"wallet.txt incom is : "<< income;
 	handler.findWallet("wallet.txt");
 	vector<Expense> expenses = handler.loadWallet("wallet.txt");

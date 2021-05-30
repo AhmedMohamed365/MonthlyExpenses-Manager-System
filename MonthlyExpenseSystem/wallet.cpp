@@ -30,25 +30,29 @@ float Wallet::loadIncome(string walletName)
 
 	fstream textFile;
 	textFile.open("Data\\incomes.txt");
-
+	
 	string line;
 	if (textFile.is_open())
 	{
 		
-		while (getline(textFile, line, ';'))
+		while (getline(textFile, line, ';') )
 		{
 			
-			vector<string>text = FileHandler::split(line, " ");
+			vector<string>text = FileHandler::split(line, "  ");
 
-			if (text[0] == walletName)
-			{
-				line = text[1];
+			
+				if (text[0] == walletName)
+				{
+					
+					line = text[1];  // gets last thing before ; which is the number
 
-				break;
-			}
+					break;
+				}
+
+			
 			
 
-			cout << line;
+			
 			
 		}
 

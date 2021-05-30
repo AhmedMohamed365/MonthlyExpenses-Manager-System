@@ -1,1 +1,1 @@
-wallet.txt 1500;wallet.txt 1500;
+wallet.txt  1500;credit card.txt  1500;
