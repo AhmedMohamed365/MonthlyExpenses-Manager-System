@@ -13,12 +13,10 @@ struct exspense_info {
 	float amount, price;
 	int day, month, year;
 	string date;
-
 	exspense_info()
 	{
 
 	}
-
 	exspense_info(vector<string> info)
 	{
 		date = info[0];
@@ -78,7 +76,7 @@ public:
 	//void expand();
 	string get_date();
 	int get_amount();
-	
+	float  get_price();
 	//void add_expense(string icategory, int idate, int imonth, int iyear);
 
 };

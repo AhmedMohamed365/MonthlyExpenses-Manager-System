@@ -80,31 +80,13 @@ float Wallet::loadIncome(string walletName)
 	float sum = 0;
 	if (textFile.is_open())
 	{
-
 		while (getline(textFile, line, ';'))
 		{
-
-
 			vector<string>text = FileHandler::split(line, ".txt");
-				
-			
-			
-			
 				if(text[1] !="")
 				sum+= stof(text[1]);  // gets last thing before ; which is the number
-
-
-
-
-
-
-
 		}
-
-
 		textFile.close();
-
-		cout << "Sum is :  " << sum;
 		//system("pause");
 		return sum;
 

@@ -33,16 +33,10 @@ void Expense::display_data()
 			<< info.date;
 	
 }
-
-
-
-
-//
-string Expense::get_category() {
+string Expense::get_category() 
+{
 	return info.category;
 }
-
-
 string Expense::get_data()
 {
 	return info.name + ',' + info.category + ',' + ',' + to_string((info.amount)) + ',' + to_string(info.price)
@@ -52,30 +46,17 @@ string Expense::get_data()
 		to_string(info.day) + '-' + to_string(info.month) + '-' + to_string(info.year );
 
 }
-
-
-
-
-
-
-
-string Expense::get_date() {
+string Expense::get_date() 
+{
 
 
 	return info.date;
 }
-
 int Expense::get_amount()
 {
 	return info.amount;
 }
-
-
-//@Ahmed Huessin continue these last getters from the Expense.h defintion 
-
-
-
-
-
-
-
+float Expense::get_price()
+{
+	return info.price;
+}

@@ -68,7 +68,7 @@ public:
 	void scanAllWallets();
 
 	void deleteWallet(Wallet wallet);
-
+	float totalPrices();
 	//void loadWallet(string walletName);
 
 

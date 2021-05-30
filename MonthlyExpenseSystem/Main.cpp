@@ -1,7 +1,8 @@
 #include <iostream>
 #include<string>
+#include <stdlib.h>
 //#include "Expense.h"
-//#include "FileHandler.h"
+#include "FileHandler.h"
 #include "filter.h"
 using namespace std;
 string choice = "- 1";
@@ -13,8 +14,8 @@ void LoadWithFilter();
 
 int main() {
 
-	Wallet::getTotalIncome();
-	//while (menu());
+	
+	while (menu());
 	return 0;
 }
 
@@ -47,6 +48,8 @@ bool menu()
 	}
 	else if (choice == "4")
 	{
+		cout << "your ramaining money is : ";
+		cout << Wallet::getTotalIncome() - handler.totalPrices()<<"LE" << endl;
 		return true;
 	}
 	else if (choice == "5")
@@ -87,6 +90,13 @@ exspense_info validData()
 		else
 			cout << "Enter exspense price:";
 		cin >> price;
+	}
+	if ((amount*price) > (Wallet ::getTotalIncome()))
+	{
+		cout << "you cant compelete this, no enough money "<<endl;
+		cout << "your remaining money : " << Wallet::getTotalIncome()<< " LE" <<endl;
+		exspense_info info(name, description, category, -1, price, day, month, year);
+		return info;
 	}
 	while (day <= 0 || day > 31)
 	{
@@ -142,7 +152,7 @@ void LoadWithFilter() {
 			cout << "Enter the amount : " << endl;
 			float  amountTest;
 			cin >> amountTest;
-			expenses = filter.filter_amount(expenses, amountTest);
+			expenses = filter.filter_amount(expenses, amountTest,1);
 			break;
 		}
 		cout << "if you want to apply date filter enter y if not enter n?" << endl;

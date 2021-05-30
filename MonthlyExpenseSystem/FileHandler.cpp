@@ -58,6 +58,7 @@ void FileHandler::countExpenses()
 void FileHandler:: saveExpense(exspense_info info)
 
 	{
+	if (info.amount != -1){
 		textFile.open("Data\\wallet.txt", ios::app);
 
 		if (textFile.is_open())
@@ -71,6 +72,7 @@ void FileHandler:: saveExpense(exspense_info info)
 					
 		textFile.close();
 		}
+	}
 	}
 
 	void  FileHandler:: rewriteExpense(Expense expense)
@@ -134,7 +136,7 @@ void FileHandler:: saveExpense(exspense_info info)
 		string foundedWallet = "";
 
 		// this gets all the wallets names
-		string path = "C:\\Users\\mercy\\source\\repos\\\MonthlyExpenses-Manager-System\\MonthlyExpenseSystem\\Data";
+		string path = "E:\\MonthlyExpenses-Manager-System-master (2)\\MonthlyExpenses-Manager-System-master\\MonthlyExpenseSystem\\Data";
 		for (const auto& entry : fs::directory_iterator(path))
 		{
 			foundedWallet = entry.path().filename().string();
@@ -172,7 +174,7 @@ void FileHandler:: saveExpense(exspense_info info)
 	{
 
 		// this gets all the wallets names
-		string path = "C:\\Users\\mercy\\source\\repos\\MonthlyExpenses-Manager-System\\MonthlyExpenseSystem\\Data";
+		string path = "E:\\MonthlyExpenses-Manager-System-master (2)\\MonthlyExpenses-Manager-System-master\\MonthlyExpenseSystem\\Data";
 		for (const auto& entry : fs::directory_iterator(path))
 		{
 			std::cout << entry.path().filename() << std::endl;
@@ -243,7 +245,30 @@ FileHandler::FileHandler() {
 	nofExpenses = 0;
 
 }
+float FileHandler::totalPrices()
+{
+	countExpenses();
+	vector <Expense> expenses(nofExpenses);
+	textFile.open("Data\\wallet.txt");
 
+	string line;
+	float total = 0;
+	if (textFile.is_open())
+	{
+		int i = 0;
+		while (getline(textFile, line, ';'))
+		{
+			exspense_info expenseInfo(split(line, ","));
+
+			expenses[i] = Expense(expenseInfo);
+			total += (expenses[i].get_amount()* expenses[i].get_price());
+			i++;
+		}
+		textFile.close();
+
+	}
+	return total;
+}
 FileHandler::~FileHandler() {
 	// TODO Auto-generated destructor stub
 }
