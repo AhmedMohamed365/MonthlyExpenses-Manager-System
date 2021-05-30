@@ -1,6 +1,12 @@
 
+
+#include "FileHandler.h"
 #include "Expense.h"
+
 #include <vector>
+
+#ifndef Wallet_H
+#define  Wallet_H
 
 class Wallet
 {
@@ -8,11 +14,15 @@ class Wallet
 private:
 	string WalletName;
 	vector<Expense>  expenses;
-	int income;
+	float income;
 public:
 	Wallet();
 	Wallet(string Walletname, int totalMoney);
 
+
+	void saveIncome(float income);
+
+	float loadIncome(string walletName);
 	//expenses section
 
 	void addExpense(Expense expense);
@@ -32,3 +42,5 @@ public:
 
 	~Wallet();
 };
+
+#endif

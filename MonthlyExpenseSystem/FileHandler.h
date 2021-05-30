@@ -5,9 +5,11 @@
  *      Author: mercy
  * 
  * 
-#ifndef FILEHANDLER_H_
-#define FILEHANDLER_H_
+
  */
+
+#ifndef FileHandler_H
+#define FileHandler_H
 
 
 
@@ -17,6 +19,7 @@
 #include <fstream>
 
 #include "Expense.h"
+
 
 #include "wallet.h"
 using namespace std;
@@ -37,9 +40,13 @@ private:
 
 
 public:
-	//expense section
+	
+	//this to split string used for date 
 	static vector<string>  split(string s, string del = ",");
 	
+
+	//expense section
+
 	void countExpenses();
 
 		
@@ -52,6 +59,8 @@ public:
 
 	vector<Expense> loadWallet(string walletFile);
 //wallet section
+
+	//void saveIncome(float income);
 	void makeWallet(string name);
 
 	Wallet findWallet(string walletName);
@@ -71,4 +80,6 @@ public:
 	virtual ~FileHandler();
 };
 
+
+#endif
 
