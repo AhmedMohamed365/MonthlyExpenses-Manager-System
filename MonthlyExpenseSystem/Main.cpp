@@ -1,34 +1,23 @@
 #include <iostream>
 #include<string>
-
+//#include "Expense.h"
+//#include "FileHandler.h"
 #include "filter.h"
 using namespace std;
 string choice = "- 1";
 FileHandler handler;
 bool menu();
 exspense_info validData();
+void LoadWithFilter();
+
+
 int main() {
-	
-
-	Wallet wallet("wallet.txt",1500);
-	//wallet.saveIncome(1500.506);
-	float income = wallet.loadIncome("credit card.txt");
-	cout<<"wallet.txt incom is : "<< income;
-	handler.findWallet("wallet.txt");
-	vector<Expense> expenses = handler.loadWallet("wallet.txt");
-	filter filter;
-	expenses = filter.filter_category(expenses, "dinner");
-
-	//expenses = filter.filter_amount(expenses, 2);
-
-	for (int i = 0; i < expenses.size(); i++)
-	{
-		expenses[i].display_data();
-		cout << endl;
-	}
 	while (menu());
 	return 0;
 }
+
+
+
 bool menu()
 {
 	if (choice != "- 1")
@@ -51,6 +40,7 @@ bool menu()
 	}
 	else if (choice == "3")
 	{
+		LoadWithFilter();
 		return true;
 	}
 	else if (choice == "4")
@@ -122,4 +112,58 @@ exspense_info validData()
 	}
 	exspense_info info(name, description, category, amount, price, day, month, year);
 	return info;
+}
+void LoadWithFilter() {
+	char filterChoice = 'n';
+	vector<Expense> expenses = handler.loadWallet("wallet.txt");
+	filter filter;
+
+	cout << "if you want to apply filters enter y if not enter n?" << endl;
+	cin >> filterChoice;
+	filterChoice = tolower(filterChoice);
+	while (filterChoice == 'y')
+	{
+		cout << "if you want to apply category filter enter y if not enter n?" << endl;
+		cin >> filterChoice;
+		while (filterChoice == 'y')
+		{
+			cout << "Enter the category : " << endl;
+			string categoryTest;
+			cin >> categoryTest;
+			expenses = filter.filter_category(expenses, categoryTest);
+			break;
+		}
+		cout << "if you want to apply amount filter enter y if not enter n?" << endl;
+		cin >> filterChoice;
+		while (filterChoice == 'y')
+		{
+			cout << "Enter the amount : " << endl;
+			float  amountTest;
+			cin >> amountTest;
+			expenses = filter.filter_amount(expenses, amountTest);
+			break;
+		}
+		cout << "if you want to apply date filter enter y if not enter n?" << endl;
+		cin >> filterChoice;
+		while (filterChoice == 'y')
+		{
+			int yearTest, monthTest, dayTest;
+			cout << "enter the year" << endl;
+			cin >> yearTest;
+			cout << "enter the month" << endl;
+			cin >> monthTest;
+			cout << "enter the day" << endl;
+			cin >> dayTest;
+			expenses = filter.filter_day(expenses, dayTest);
+			expenses = filter.filter_month(expenses, monthTest);
+			expenses = filter.filter_year(expenses, yearTest);
+			break;
+		}
+		filterChoice = 'n';
+	}
+	for (int i = 0; i < expenses.size(); i++)
+	{
+		expenses[i].display_data();
+		cout << endl;
+	}
 }
