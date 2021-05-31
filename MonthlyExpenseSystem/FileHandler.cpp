@@ -34,6 +34,7 @@ vector<string> FileHandler::split(string s, string del)
 
 void FileHandler::countExpenses()
 {
+	nofExpenses = 0;
 	textFile.open("Data\\wallet.txt");
 
 	int begin = 0;

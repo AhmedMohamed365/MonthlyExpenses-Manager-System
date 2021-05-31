@@ -3,9 +3,7 @@
 #include "Expense.h"
 #include <vector>
 #include <string>
-
 using namespace std;
-
 vector<Expense> filter::filter_month(vector<Expense> v, int imonth)
 {
     vector<Expense> ret;
@@ -37,7 +35,9 @@ vector<Expense> filter::filter_amount(vector<Expense> v, float amount, int filte
 {
     // 1 -> equal
     // 2-> equal or greater than
-    //3-> equal or less than
+    // 3-> greater than 
+    //4-> equal or less than
+    //5-> less than 
     vector<Expense> ret;
 
     for (int i = 0; i < v.size(); ++i) {
@@ -64,7 +64,9 @@ vector<Expense> filter::filter_price(vector<Expense> v, float price, int filter_
 {
     // 1 -> equal
     // 2-> equal or greater than
-    //3-> equal or less than
+    // 3-> greater than 
+    //4-> equal or less than
+    //5-> less than 
     vector<Expense> ret;
 
     for (int i = 0; i < v.size(); ++i) {
@@ -90,26 +92,6 @@ filter::filter()
 {
 
 }
-vector<Expense> filter::filter_all(vector<Expense> v, bool is_category, bool is_day, bool is_month, bool is_year, bool is_amount, string category, int day, int month, int year, float amount)
-{
-    vector<Expense> ret = v;
-    if (is_category) {
-        ret = filter::filter_category(ret, category);
-    }
-    if (is_day) {
-        ret = filter::filter_day(ret, day);
-    }
-    if (is_month) {
-        ret = filter::filter_month(ret, month);
-    }
-    if (is_year) {
-        ret = filter::filter_year(ret, year);
-    }
-    // if (is_amount) {
-   //      ret = filter::filter_amount(ret, amount,);
-    // }
-    return ret;
-}
 vector<Expense> filter::filter_category(vector<Expense> v, string icategory) {
     vector<Expense> ret;
     for (int i = 0; i < v.size(); ++i) {
@@ -119,7 +101,6 @@ vector<Expense> filter::filter_category(vector<Expense> v, string icategory) {
     }
     return ret;
 }
-
 vector<Expense> filter::filter_day(vector<Expense> v, int iday)
 {
     vector<Expense> ret;

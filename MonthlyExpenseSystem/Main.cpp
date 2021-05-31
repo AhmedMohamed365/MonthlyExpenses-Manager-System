@@ -5,14 +5,11 @@
 #include "FileHandler.h"
 #include "filter.h"
 using namespace std;
-string choice = "- 1";
+string choice = "-1";
 FileHandler handler;
 bool menu();
 exspense_info validData();
 void LoadWithFilter();
-
-
-// I  managed it
 
 int main() {
 
@@ -25,7 +22,7 @@ int main() {
 
 bool menu()
 {
-	if (choice != "- 1")
+	if (choice != "-1")
 		cout << "-------------------" << endl;
 	cout << "Enter 1 to enter monthly income" << endl;
 	cout << "Enter 2 to enter daily expense " << endl;
@@ -40,7 +37,16 @@ bool menu()
 	}
 	else if (choice == "2")
 	{
-		handler.saveExpense(validData());
+		while (choice == "2")
+		{
+			handler.saveExpense(validData());
+			cout << "if you want to add another expense enter y" << endl;
+			cout << "if not enter n" << endl;
+			cin >> choice;
+
+			if (choice == "y"|| choice == "Y")
+				choice = "2";
+		}
 		return true;
 	}
 	else if (choice == "3")
@@ -56,6 +62,7 @@ bool menu()
 	}
 	else if (choice == "5")
 	{
+		cout << "good bye"<<endl;
 		return false;
 	}
 	else
@@ -63,13 +70,12 @@ bool menu()
 		choice = "0";
 		return true;
 	}
-
 }
 exspense_info validData()
 {
 	string name, description, category;
 	float amount = 0, price = 0;
-	int day = 0, month = 0, year = 2020;
+	int day = 0, month = 0, year = 0;
 	cout << "Enter exspense name:";
 	getline(cin, name);
 	getline(cin, name);
@@ -97,6 +103,7 @@ exspense_info validData()
 	{
 		cout << "you cant compelete this, no enough money "<<endl;
 		cout << "your remaining money : " << Wallet::getTotalIncome()<< " LE" <<endl;
+		cout << "you need : " << double(amount * price) << " LE " << endl;
 		exspense_info info(name, description, category, -1, price, day, month, year);
 		return info;
 	}
@@ -118,7 +125,7 @@ exspense_info validData()
 	}
 	while (year <= 2020 || year > 2100)
 	{
-		if (year != 0)
+		if (year !=0 )
 			cout << "Enter valid year:";
 		else
 			cout << "Enter the year:";
@@ -177,6 +184,11 @@ void LoadWithFilter() {
 	}
 	for (int i = 0; i < expenses.size(); i++)
 	{
+		if (i == 0)
+		{
+			cout << "Date" << '\t' << '\t' << "Name" << '\t' << "Category" << '\t' << "Amount" << '\t' << "Price" << '\t' << "Description" << endl;
+			cout << "-------------------------------------------------------------------" << endl;
+		}
 		expenses[i].display_data();
 		cout << endl;
 	}

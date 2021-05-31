@@ -1,12 +1,6 @@
-
-
-
 #include "wallet.h"
-
 #include <fstream>
 #include <stack>
-
-
 Wallet::Wallet()
 {
 }

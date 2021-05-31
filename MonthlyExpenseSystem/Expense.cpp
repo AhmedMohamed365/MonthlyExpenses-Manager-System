@@ -18,20 +18,8 @@ Expense::Expense(exspense_info info)
 
 void Expense::display_data()
 {
-	/*
-	string name , description , category;
-		float amount  , price;
-		int day, month, year;
-	*/
-	
-		// needs to be modified ( date should be one coulm)
-	cout << endl <<"*********************\n";
-	
-		cout << info.name +'\t' << info.category + '\t' <<
-			info.amount + '\t' << info.price  << endl
-			<< info.description << endl
-			<< info.date;
-	
+	if (info.name!="")
+	cout << info.date << '\t' << info.name <<'\t' << info.category << '\t'<< '\t' <<info.amount << '\t' << info.price  << '\t' << info.description <<'\n';
 }
 string Expense::get_category() 
 {
@@ -48,8 +36,6 @@ string Expense::get_data()
 }
 string Expense::get_date() 
 {
-
-
 	return info.date;
 }
 int Expense::get_amount()
