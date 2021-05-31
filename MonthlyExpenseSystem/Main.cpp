@@ -12,6 +12,8 @@ exspense_info validData();
 void LoadWithFilter();
 
 
+// I  managed it
+
 int main() {
 
 	
