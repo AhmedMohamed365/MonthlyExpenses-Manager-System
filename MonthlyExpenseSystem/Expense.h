@@ -13,6 +13,29 @@ struct exspense_info {
 	float amount, price;
 	int day, month, year;
 	string date;
+
+
+	vector<string> split(string s, string del)
+	{
+		int start = 0;
+		int end = s.find(del);
+		int i = 0;
+		vector<string> items(6);
+		while (end != -1) {
+			items[i] = s.substr(start, end - start);
+
+			start = end + del.size();
+			end = s.find(del, start);
+
+			i++;
+		}
+
+		items[i] = s.substr(start, end - start);
+
+
+		return items;
+	}
+
 	exspense_info()
 	{
 
@@ -30,13 +53,15 @@ struct exspense_info {
 		name = info[5];
 		
 		vector<string> dateInfo(3);
-		/*dateInfo = FileHandler::split(info[6],"-");
+		dateInfo = split(info[0],"-");
 
+
+		// It's now working  you can extract day  , month or year from a date :) 
 		day = stoi(dateInfo[0]);
 
 		month = stoi(dateInfo[1]);
 
-		year = stoi(dateInfo[2]);*/
+		year = stoi(dateInfo[2]);
 
 		
 	}
