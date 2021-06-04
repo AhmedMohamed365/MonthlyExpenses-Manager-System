@@ -32,6 +32,25 @@ bool menu()
 	cin >> choice;
 	if (choice == "1")
 	{
+		
+		float income = 0;
+
+		cin >> income;
+
+		if (income > 0)
+		{
+			// maybe Income should be in wallet constructor ? 
+
+			Wallet wallet("wallet4.txt",income);
+			wallet.saveIncome(income);
+
+			float loaded = wallet.loadIncome("wallet4.txt");
+			if (income == loaded )
+			{
+				cout << "\nyour income is saved and loaded correctly" << loaded;
+			}
+		}
+	
 
 		return true;
 	}

@@ -7,7 +7,7 @@ Wallet::Wallet()
 
 Wallet::Wallet(string Walletname, int totalMoney)
 {
-    this->WalletName = WalletName;
+    this->WalletName = Walletname;
     income = totalMoney;
 }
 
@@ -16,14 +16,16 @@ void Wallet::saveIncome(float income)
 
     fstream incomes("Data\\incomes.txt", ios::app);
 
-    incomes << WalletName <<' ' << income << endl;
+	incomes << WalletName << ' ' << income << ';';
+
+	incomes.close();
 }
 
 float Wallet::loadIncome(string walletName)
 {
 
 	fstream textFile;
-	textFile.open("Data\\incomes.txt");
+	textFile.open("Data\\incomes.txt",ios::in);
 	
 	string line;
 	if (textFile.is_open())
@@ -32,7 +34,7 @@ float Wallet::loadIncome(string walletName)
 		while (getline(textFile, line, ';') )
 		{
 			
-			vector<string>text = FileHandler::split(line, "  ");
+			vector<string>text = FileHandler::split(line, " ");
 
 			
 				if (text[0] == walletName)
