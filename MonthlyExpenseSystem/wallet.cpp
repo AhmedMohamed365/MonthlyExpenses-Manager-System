@@ -53,7 +53,7 @@ void Wallet::increaseIncome(float increase,vector<string> walletsName,int chosen
 void Wallet::saveIncomes(vector<string> walletsName, vector<float> incomes)
 {
 	FileHandler handler;
-	handler.textFile.open("incomes.txt", ios::out);
+	handler.textFile.open("Data\\incomes.txt", ios::out);
 	
 	for (int i = 0; i < walletsName.size(); i++)
 	{
