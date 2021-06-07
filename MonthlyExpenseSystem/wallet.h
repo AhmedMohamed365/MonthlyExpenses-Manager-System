@@ -22,6 +22,10 @@ public:
 
 	void saveIncome(float income);
 
+
+	void increaseIncome(float increase, vector<string> walletsName, int chosenWallet);
+
+	void saveIncomes(vector<string>walletsName, vector<float>incomes);
 	float loadIncome(string walletName);
 
 	// independant function of any exact wallet : returns all wallets' incomes

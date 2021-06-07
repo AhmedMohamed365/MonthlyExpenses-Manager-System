@@ -248,7 +248,9 @@ void FileHandler:: saveExpense(exspense_info info)
 
 }
 
-FileHandler::FileHandler() {
+	
+
+	FileHandler::FileHandler() {
 	// TODO Auto-generated constructor stub
 
 	nofWallets = 0;
@@ -258,6 +260,7 @@ FileHandler::FileHandler() {
 float FileHandler::totalPrices()
 {
 	countExpenses();
+	
 	vector <Expense> expenses(nofExpenses);
 	textFile.open("Data\\wallet.txt");
 

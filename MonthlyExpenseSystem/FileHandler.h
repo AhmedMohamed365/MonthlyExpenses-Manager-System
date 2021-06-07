@@ -33,14 +33,14 @@ namespace fs = std::filesystem;
 
 class FileHandler {
 private:
-	fstream textFile;
+	
 	int nofExpenses ; // gets this number to give it to number of expenses
 	int nofWallets ; // num of wallets exist in the folder
 
 
 
 public:
-	
+	fstream textFile;
 	//this to split string used for date 
 	static vector<string>  split(string s, string del = ",");
 	
@@ -73,7 +73,9 @@ public:
 
 
 
+	//text file section
 
+	
 
 	FileHandler();
 

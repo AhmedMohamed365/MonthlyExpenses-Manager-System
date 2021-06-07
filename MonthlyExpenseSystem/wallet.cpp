@@ -25,6 +25,44 @@ void Wallet::saveIncome(float income)
 	incomes.close();
 }
 
+
+
+void Wallet::increaseIncome(float increase,vector<string> walletsName,int chosenWallet)
+{
+	vector<float> incomes;
+	float old_income;
+	for (int i = 0; i < walletsName.size(); i++)
+	{
+		old_income = loadIncome(walletsName[i]);
+
+		if (i == chosenWallet - 1)
+			old_income += increase;
+
+		incomes.push_back(old_income);
+		
+
+	}
+	
+		saveIncomes(walletsName,incomes);
+
+	
+
+	
+}
+
+void Wallet::saveIncomes(vector<string> walletsName, vector<float> incomes)
+{
+	FileHandler handler;
+	handler.textFile.open("incomes.txt", ios::out);
+	
+	for (int i = 0; i < walletsName.size(); i++)
+	{
+		handler.textFile << walletsName[i] << '[' << incomes[i]<<';';
+	}
+
+	handler.textFile.close();
+}
+
 float Wallet::loadIncome(string walletName)
 {
 
@@ -32,6 +70,8 @@ float Wallet::loadIncome(string walletName)
 	textFile.open("Data\\incomes.txt",ios::in);
 	
 	string line;
+	// save it to value this is better 
+	string value;
 	if (textFile.is_open())
 	{
 		
@@ -44,9 +84,9 @@ float Wallet::loadIncome(string walletName)
 				if (text[0] == walletName)
 				{
 					
-					line = text[1];  // gets last thing before ; which is the number
+					value = text[1];  // gets last thing before ; which is the number
 
-					break;
+					//break; to get the last wallet value
 				}
 
 			
@@ -59,7 +99,7 @@ float Wallet::loadIncome(string walletName)
 
 		textFile.close();
 
-		return stof(line);
+		return stof(value);
 
 	}
 

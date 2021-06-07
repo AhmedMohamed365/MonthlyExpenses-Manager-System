@@ -26,14 +26,16 @@ bool menu()
 {
 	if (choice != "-1")
 		cout << "-------------------" << endl;
-	cout << "Enter 1 to enter monthly income" << endl;
+	cout << "Enter 1 to change your  monthly income" << endl;
 	cout << "Enter 2 to enter daily expense " << endl;
 	cout << "Enter 3 to view expenses" << endl;
 	cout << "Enter 4 to view the remaining money " << endl;
-	cout << "Enter 5 to exit " << endl;
+	cout<< "Enter 5 to insert money to a wallet " << endl;
+	cout << "Enter 6 to exit " << endl;
 	cin >> choice;
 	if (choice == "1")
 	{
+		// this code update the montly income to new one
 		string walletName = "";
 		
 		cout << "Enter the wallet name to save a new wallet with it's income\n or choose exisiting wallet to edit it\n";
@@ -61,7 +63,7 @@ bool menu()
 				walletName = walletName + ".txt";
 
 			Wallet wallet(walletName,income);
-			wallet.saveIncome(income);
+		//	wallet.saveIncome(income);
 
 			float loaded = wallet.loadIncome(walletName);
 			if (income == loaded )
@@ -98,7 +100,49 @@ bool menu()
 		cout << Wallet::getTotalIncome() - handler.totalPrices()<<"LE" << endl;
 		return true;
 	}
+
 	else if (choice == "5")
+	{
+		//this code edit the income  :  income += increase
+		string walletName = "";
+
+		cout << " choose the number of the  wallet to edit it\n";
+
+		vector<string> walletsNames = handler.scanAllWallets();
+		cout << endl;
+
+		cin >> walletName;
+		int chosenWallet = stoi(walletName);
+		for (int i = 0; i < walletsNames.size(); i++)
+
+			if (chosenWallet == i)
+			{
+				walletName = walletsNames[i - 1];
+
+				break;
+			}
+
+		float income = 0;
+
+		cin >> income;
+	
+
+		if (income > 0)
+		{
+			// maybe Income should be in wallet constructor ? 
+			if (walletName.find(".txt") == -1)//:
+				walletName = walletName + ".txt";
+
+			Wallet wallet;
+			wallet.increaseIncome(income, walletsNames ,chosenWallet );
+
+			float loaded = wallet.loadIncome(walletName);
+			
+				cout << "\nyour income is saved and loaded correctly it's now : " << loaded;
+			
+		}
+	}
+	else if (choice == "6")
 	{
 		cout << "good bye"<<endl;
 		return false;
