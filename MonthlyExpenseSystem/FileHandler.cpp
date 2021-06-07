@@ -192,6 +192,8 @@ void FileHandler:: saveExpense(exspense_info info)
 	{
 
 	}
+
+
 	/*
 	void FileHandler::loadWallet(string walletFile)
 	{
@@ -234,7 +236,7 @@ void FileHandler:: saveExpense(exspense_info info)
 
 
 	//should check here if the file is already there
-	 fstream WalletFile(name,ios::app);
+	 fstream WalletFile(name,ios::out |ios::app);
 	
 
 }

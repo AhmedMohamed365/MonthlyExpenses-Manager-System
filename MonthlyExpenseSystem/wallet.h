@@ -28,11 +28,13 @@ public:
 	static float getTotalIncome(); 
 	//expenses section
 
-	void addExpense(Expense expense);
+
+	void setExpenses(vector<Expense> expensesList);
+	/*void addExpense(Expense expense);
 
 	void editExpense(Expense expense);
 
-	void deleteExpense(Expense expense);
+	void deleteExpense(Expense expense);*/
 
 
 	void viewExpenses(vector<Expense> allExpenses);

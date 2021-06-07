@@ -1,1 +1,1 @@
-wallet2.txt 2000;wallet3.txt 500.674;wallet3.txt 1500.57;wallet4.txt 500.653;
+cash.txt[500;

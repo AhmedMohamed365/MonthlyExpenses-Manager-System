@@ -32,7 +32,11 @@ bool menu()
 	cin >> choice;
 	if (choice == "1")
 	{
+		string walletName = "";
 		
+		cout << "Enter the wallet name to save it's expense or choose exisiting wallet to edit it";
+
+		cin >> walletName;
 		float income = 0;
 
 		cin >> income;
@@ -41,10 +45,12 @@ bool menu()
 		{
 			// maybe Income should be in wallet constructor ? 
 
-			Wallet wallet("wallet4.txt",income);
+			walletName = walletName + ".txt";
+
+			Wallet wallet(walletName,income);
 			wallet.saveIncome(income);
 
-			float loaded = wallet.loadIncome("wallet4.txt");
+			float loaded = wallet.loadIncome(walletName);
 			if (income == loaded )
 			{
 				cout << "\nyour income is saved and loaded correctly" << loaded;

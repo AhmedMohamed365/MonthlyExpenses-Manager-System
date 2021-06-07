@@ -1,6 +1,7 @@
 #include "wallet.h"
 #include <fstream>
 #include <stack>
+#include "FileHandler.h"
 Wallet::Wallet()
 {
 }
@@ -9,6 +10,9 @@ Wallet::Wallet(string Walletname, int totalMoney)
 {
     this->WalletName = Walletname;
     income = totalMoney;
+
+	FileHandler handler;
+	handler.makeWallet(WalletName);
 }
 
 void Wallet::saveIncome(float income)
@@ -16,7 +20,7 @@ void Wallet::saveIncome(float income)
 
     fstream incomes("Data\\incomes.txt", ios::app);
 
-	incomes << WalletName << ' ' << income << ';';
+	incomes << WalletName << '[' << income << ';';
 
 	incomes.close();
 }
@@ -34,7 +38,7 @@ float Wallet::loadIncome(string walletName)
 		while (getline(textFile, line, ';') )
 		{
 			
-			vector<string>text = FileHandler::split(line, " ");
+			vector<string>text = FileHandler::split(line, "[");
 
 			
 				if (text[0] == walletName)
@@ -78,7 +82,7 @@ float Wallet::loadIncome(string walletName)
 	{
 		while (getline(textFile, line, ';'))
 		{
-			vector<string>text = FileHandler::split(line, ".txt");
+			vector<string>text = FileHandler::split(line, "[");
 				if(text[1] !="")
 				sum+= stof(text[1]);  // gets last thing before ; which is the number
 		}
@@ -91,6 +95,11 @@ float Wallet::loadIncome(string walletName)
 
 	return(1);
 }
+
+ void Wallet::setExpenses(vector<Expense> expensesList)
+ {
+	 expenses = expensesList;
+ }
 
 void Wallet::viewExpenses(vector<Expense> allExpenses)
 {
