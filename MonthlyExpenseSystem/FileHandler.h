@@ -65,7 +65,7 @@ public:
 
 	Wallet findWallet(string walletName);
 
-	void scanAllWallets();
+	vector<string> scanAllWallets();
 
 	void deleteWallet(Wallet wallet);
 	float totalPrices();

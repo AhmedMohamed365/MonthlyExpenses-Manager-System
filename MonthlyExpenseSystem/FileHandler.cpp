@@ -171,21 +171,28 @@ void FileHandler:: saveExpense(exspense_info info)
 
 	}
 
-	void FileHandler::  scanAllWallets()
+	vector<string> FileHandler::  scanAllWallets()
 	{
 
 		// this gets all the wallets names
-		string path = "E:\\MonthlyExpenses-Manager-System-master (2)\\MonthlyExpenses-Manager-System-master\\MonthlyExpenseSystem\\Data";
+		vector<string>wallets;
+		string path = "C:\\Users\\Ahmed\\source\\repos\\MonthlyExpenseSystem\\MonthlyExpenseSystem\\Data";
 		for (const auto& entry : fs::directory_iterator(path))
 		{
-			std::cout << entry.path().filename() << std::endl;
+			string walletName = entry.path().filename().string();
+			if (walletName == "incomes.txt")
+				continue;
 
+			std::cout <<"Enter "<<nofWallets+1<<"- "<< walletName  << std::endl;
+
+			wallets.push_back(walletName);
 
 			nofWallets++;
 		}
 
 		cout << "Number of wallets found : " << nofWallets;
 			
+		return wallets;
 	}
 
 	void FileHandler::   deleteWallet(Wallet wallet)

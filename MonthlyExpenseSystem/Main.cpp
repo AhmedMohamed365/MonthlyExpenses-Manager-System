@@ -34,9 +34,20 @@ bool menu()
 	{
 		string walletName = "";
 		
-		cout << "Enter the wallet name to save it's expense or choose exisiting wallet to edit it";
+		cout << "Enter the wallet name to save a new wallet with it's income\n or choose exisiting wallet to edit it\n";
+
+		vector<string> choices = handler.scanAllWallets();
+		cout << endl;
 
 		cin >> walletName;
+		int choice = stoi(walletName);
+		for (int i = 0; i < choices.size(); i++)
+			if (choice == i)
+			{
+				walletName = choices[i-1];
+
+				break;
+			}
 		float income = 0;
 
 		cin >> income;
@@ -44,8 +55,8 @@ bool menu()
 		if (income > 0)
 		{
 			// maybe Income should be in wallet constructor ? 
-
-			walletName = walletName + ".txt";
+			if(walletName.find(".txt")==-1)//:
+				walletName = walletName + ".txt";
 
 			Wallet wallet(walletName,income);
 			wallet.saveIncome(income);
