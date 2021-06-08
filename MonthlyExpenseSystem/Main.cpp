@@ -276,8 +276,7 @@ void LoadWithFilter(string currentWallet) {
 			cout << "Enter the amount : " << endl;
 			float  amountTest;
 			cin >> amountTest;
-			cout << "Enter filter type :";
-			expenses = filter.filter_amount(expenses, amountTest, "=");
+			expenses = filter.filter_amount(expenses, amountTest, filterType());
 			break;
 		}
 		cout << "if you want to apply date filter enter y if not enter n?" << endl;
@@ -313,7 +312,8 @@ string filterType()
 {
 	string expression;
 	cout << "Enter filter type : ";
-	while (expression !="<>"||expression != ">" || expression != "<" || expression != "<=" || expression != "<=" || expression != "=")
+	cin >> expression;
+	while (expression !="<>"&&expression != ">" && expression != "<" && expression != "<=" &&  expression != "<=" && expression != "=")
 	{
 		cout << "Enter valid choice :";
 		cin >> expression;
