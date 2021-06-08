@@ -51,7 +51,7 @@ public:
 
 		
 	
-	void saveExpense(exspense_info info);
+	void saveExpense(string walletName, exspense_info info);
 
 	void eraseExpense(Expense expense);
 
@@ -64,6 +64,9 @@ public:
 	void makeWallet(string name);
 
 	Wallet findWallet(string walletName);
+
+
+	string chooseWalletFile();
 
 	vector<string> scanAllWallets();
 

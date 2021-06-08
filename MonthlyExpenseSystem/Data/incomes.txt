@@ -1,1 +1,1 @@
-wallet.txt[1000;wallet2.txt[700;
+cash.txt[2100;debitCard.txt[9000;

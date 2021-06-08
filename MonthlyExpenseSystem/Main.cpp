@@ -9,13 +9,18 @@ string choice = "-1";
 FileHandler handler;
 bool menu();
 exspense_info validData();
-void LoadWithFilter();
+void LoadWithFilter(string currentWallet);
 
+
+//current wallet file
+string currentWallet = "cash.txt";
 
 // is it working ? 
 int main() {
 
-	
+	system("Color F0");
+	cout << "\t\t\t ****Welcome to Montly Expense System****\t\t\t " << endl;
+	cout << "\t\t\t  ***                MENU           ***\t\t\t  " << endl;
 	while (menu());
 	return 0;
 }
@@ -38,14 +43,14 @@ bool menu()
 		// this code update the montly income to new one
 		string walletName = "";
 		
-		cout << "Enter the wallet name to save a new wallet with it's income\n or choose exisiting wallet to edit it\n";
+		cout << "Enter the wallet name to save a new wallet with it's income\n ";
 
 		vector<string> choices = handler.scanAllWallets();
 		cout << endl;
 
 		cin >> walletName;
 		int choice = stoi(walletName);
-		for (int i = 0; i < choices.size(); i++)
+		for (int i = 1; i < choices.size()+1; i++)
 			if (choice == i)
 			{
 				walletName = choices[i-1];
@@ -63,7 +68,7 @@ bool menu()
 				walletName = walletName + ".txt";
 
 			Wallet wallet(walletName,income);
-		//	wallet.saveIncome(income);
+			wallet.saveIncome(income);
 
 			float loaded = wallet.loadIncome(walletName);
 			if (income == loaded )
@@ -77,9 +82,12 @@ bool menu()
 	}
 	else if (choice == "2")
 	{
+		
+		currentWallet = handler.chooseWalletFile();
 		while (choice == "2")
 		{
-			handler.saveExpense(validData());
+
+			handler.saveExpense(currentWallet,validData());
 			cout << "if you want to add another expense enter y" << endl;
 			cout << "if not enter n" << endl;
 			cin >> choice;
@@ -91,11 +99,12 @@ bool menu()
 	}
 	else if (choice == "3")
 	{
-		LoadWithFilter();
+		LoadWithFilter(currentWallet);
 		return true;
 	}
 	else if (choice == "4")
 	{
+		system("Color FC");
 		cout << "your ramaining money is : ";
 		cout << Wallet::getTotalIncome() - handler.totalPrices()<<"LE" << endl;
 		return true;
@@ -113,7 +122,7 @@ bool menu()
 
 		cin >> walletName;
 		int chosenWallet = stoi(walletName);
-		for (int i = 0; i < walletsNames.size(); i++)
+		for (int i = 1; i < walletsNames.size()+1; i++)
 
 			if (chosenWallet == i)
 			{
@@ -137,13 +146,15 @@ bool menu()
 			wallet.increaseIncome(income, walletsNames ,chosenWallet );
 
 			float loaded = wallet.loadIncome(walletName);
-			
+			//green color
+			system("Color F2");
 				cout << "\nyour income is saved and loaded correctly it's now : " << loaded;
 			
 		}
 	}
 	else if (choice == "6")
 	{
+		system("Color F2");
 		cout << "good bye"<<endl;
 		return false;
 	}
@@ -216,9 +227,9 @@ exspense_info validData()
 	exspense_info info(name, description, category, amount, price, day, month, year);
 	return info;
 }
-void LoadWithFilter() {
+void LoadWithFilter(string currentWallet) {
 	char filterChoice = 'n';
-	vector<Expense> expenses = handler.loadWallet("wallet.txt");
+	vector<Expense> expenses = handler.loadWallet(currentWallet);
 	filter filter;
 
 	cout << "if you want to apply filters enter y if not enter n?" << endl;

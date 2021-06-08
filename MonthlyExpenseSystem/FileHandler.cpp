@@ -56,11 +56,12 @@ void FileHandler::countExpenses()
 	
 }
 
-void FileHandler:: saveExpense(exspense_info info)
+void FileHandler:: saveExpense(string walletName,exspense_info info)
 
 	{
 	if (info.amount != -1){
-		textFile.open("Data\\wallet.txt", ios::app);
+		walletName = "Data\\" + walletName;
+		textFile.open(walletName, ios::app);
 
 		if (textFile.is_open())
 		{
@@ -137,7 +138,7 @@ void FileHandler:: saveExpense(exspense_info info)
 		string foundedWallet = "";
 
 		// this gets all the wallets names
-		string path = "E:\\MonthlyExpenses-Manager-System-master (2)\\MonthlyExpenses-Manager-System-master\\MonthlyExpenseSystem\\Data";
+		string path = "C:\\Users\\mercy\\source\\repos\\MonthlyExpenses-Manager-System\\MonthlyExpenseSystem\\Data";
 		for (const auto& entry : fs::directory_iterator(path))
 		{
 			foundedWallet = entry.path().filename().string();
@@ -176,7 +177,7 @@ void FileHandler:: saveExpense(exspense_info info)
 
 		// this gets all the wallets names
 		vector<string>wallets;
-		string path = "C:\\Users\\Ahmed\\source\\repos\\MonthlyExpenseSystem\\MonthlyExpenseSystem\\Data";
+		string path = "C:\\Users\\mercy\\source\\repos\\MonthlyExpenses-Manager-System\\MonthlyExpenseSystem\\Data";
 		for (const auto& entry : fs::directory_iterator(path))
 		{
 			string walletName = entry.path().filename().string();
@@ -193,6 +194,29 @@ void FileHandler:: saveExpense(exspense_info info)
 		cout << "Number of wallets found : " << nofWallets;
 			
 		return wallets;
+	}
+
+	string FileHandler::chooseWalletFile()
+	{
+		string walletName = "";
+
+		cout << "please choose the number of the  wallet \n";
+
+		vector<string> walletsNames = scanAllWallets();
+		cout << endl;
+
+		cin >> walletName;
+		int chosenWallet = stoi(walletName);
+		for (int i = 1; i < walletsNames.size() + 1; i++)
+
+			if (chosenWallet == i)
+			{
+				walletName = walletsNames[i - 1];
+
+				break;
+			}
+
+		return walletName;
 	}
 
 	void FileHandler::   deleteWallet(Wallet wallet)
