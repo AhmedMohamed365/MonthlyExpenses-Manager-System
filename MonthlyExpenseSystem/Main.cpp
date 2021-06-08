@@ -92,6 +92,7 @@ bool menu()
 	}
 	else if (choice == "3")
 	{
+		currentWallet = handler.chooseWalletFile();
 		LoadWithFilter(currentWallet);
 		return true;
 	}
