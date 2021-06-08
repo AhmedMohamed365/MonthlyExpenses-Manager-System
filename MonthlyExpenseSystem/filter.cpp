@@ -4,7 +4,7 @@
 #include <vector>
 #include <string>
 using namespace std;
-vector<Expense> filter::filter_month(vector<Expense> v, int imonth)
+vector<Expense> filter::filter_month(vector<Expense> v, int imonth, string filter_type)
 {
     vector<Expense> ret;
 
@@ -19,7 +19,7 @@ vector<Expense> filter::filter_month(vector<Expense> v, int imonth)
     return ret;
 }
 
-vector<Expense> filter::filter_year(vector<Expense> v, int iyear)
+vector<Expense> filter::filter_year(vector<Expense> v, int iyear, string filter_type)
 {
     vector<Expense> ret;
 
@@ -31,62 +31,62 @@ vector<Expense> filter::filter_year(vector<Expense> v, int iyear)
     return ret;
 }
 
-vector<Expense> filter::filter_amount(vector<Expense> v, float amount, int filter_type)
+vector<Expense> filter::filter_amount(vector<Expense> v, float amount, string filter_type)
 {
-    // 1 -> equal
-    // 2-> equal or greater than
-    // 3-> greater than 
-    //4-> equal or less than
-    //5-> less than 
     vector<Expense> ret;
 
     for (int i = 0; i < v.size(); ++i) {
-        if (filter_type == 1) {
-            if (v[i].get_amount() == amount) {
-                ret.push_back(v[i]);
-            }
+        
+        for (int i = 0; i < v.size(); ++i) 
+            if (filter_type == "=")
+                if (v[i].get_amount() == amount)
+                    ret.push_back(v[i]);
+            if (filter_type == "<>") 
+                if (v[i].get_amount() != amount) 
+                    ret.push_back(v[i]);
+            else if (filter_type == ">=") 
+                if (v[i].get_amount() >= amount) 
+                    ret.push_back(v[i]);
+            else if (filter_type == "<=") 
+                if (v[i].get_amount() <= amount) 
+                    ret.push_back(v[i]);
+            else if (filter_type == "<")
+                if (v[i].get_amount() < amount) 
+                    ret.push_back(v[i]);
+            else if (filter_type == ">") 
+                if (v[i].get_amount() > amount) 
+                    ret.push_back(v[i]);
         }
-        else if (filter_type == 2) {
-            if (v[i].get_amount() >= amount) {
-                ret.push_back(v[i]);
-            }
-        }
-        else if (filter_type == 3) {
-            if (v[i].get_amount() <= amount) {
-                ret.push_back(v[i]);
-            }
-        }
-    }
     return ret;
 }
 
-vector<Expense> filter::filter_price(vector<Expense> v, float price, int filter_type)
+vector<Expense> filter::filter_price(vector<Expense> v, float price, string filter_type)
 {
-    // 1 -> equal
-    // 2-> equal or greater than
-    // 3-> greater than 
-    //4-> equal or less than
-    //5-> less than 
     vector<Expense> ret;
+        for (int i = 0; i < v.size(); ++i) {
+            if (filter_type == "=")
+                if (v[i].get_price() == price)
+                    ret.push_back(v[i]);
+            if (filter_type == "<>") 
+                if (v[i].get_price() != price)
+                    ret.push_back(v[i]);
+            
+            else if (filter_type == ">=") 
+                if (v[i].get_price() >= price)
+                    ret.push_back(v[i]);
+            else if (filter_type == "<=") 
+                if (v[i].get_price() <= price)
+                    ret.push_back(v[i]);
+            
+            else if (filter_type == "<") 
+                if (v[i].get_price() < price)
+                    ret.push_back(v[i]);
 
-    for (int i = 0; i < v.size(); ++i) {
-        if (filter_type == 1) {
-            if (v[i].get_price() == price) {
-                ret.push_back(v[i]);
-            }
+            else if (filter_type == ">") 
+                if (v[i].get_price() > price)
+                    ret.push_back(v[i]);
+            return ret;
         }
-        else if (filter_type == 2) {
-            if (v[i].get_price() >= price) {
-                ret.push_back(v[i]);
-            }
-        }
-        else if (filter_type == 3) {
-            if (v[i].get_price() <= price) {
-                ret.push_back(v[i]);
-            }
-        }
-    }
-    return ret;
 }
 filter::filter()
 {
@@ -101,7 +101,7 @@ vector<Expense> filter::filter_category(vector<Expense> v, string icategory) {
     }
     return ret;
 }
-vector<Expense> filter::filter_day(vector<Expense> v, int iday)
+vector<Expense> filter::filter_day(vector<Expense> v, int iday, string filter_type)
 {
     vector<Expense> ret;
 
@@ -111,9 +111,4 @@ vector<Expense> filter::filter_day(vector<Expense> v, int iday)
         }
     }
     return ret;
-}
-
-filter::~filter()
-{
-
 }
