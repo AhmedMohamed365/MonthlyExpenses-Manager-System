@@ -4,7 +4,6 @@
 #include<string>
 #include <string.h>
 #include<vector>
-
 using namespace std;
 
 
@@ -88,7 +87,7 @@ public:
 	//int capacity;
 	//informations of expense 
 	exspense_info info;
-
+	
 
 	 // int expenses_count;
 public:

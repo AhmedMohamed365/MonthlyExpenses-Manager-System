@@ -6,7 +6,7 @@
 
 Expense::Expense()
 {
-
+	//myChoice = -1;
 }
 
 
@@ -14,6 +14,7 @@ Expense::Expense()
 Expense::Expense(exspense_info info)
 {
 	this->info = info;
+	
 }
 
 void Expense::display_data()

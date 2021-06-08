@@ -7,6 +7,7 @@
 
 
 #include "FileHandler.h"
+#include "Expense.h"
 //expenses section
 
 
@@ -40,7 +41,7 @@ vector<string> FileHandler::split(string s, string del)
 void FileHandler::countExpenses(string currentWallet)
 {
 	nofExpenses = 0;
-	//currentWallet = "Data\\" + currentWallet;
+	currentWallet = "Data\\" + currentWallet;
 	textFile.open(currentWallet,ios::in);
 
 	int begin = 0;
@@ -96,7 +97,6 @@ void FileHandler:: saveExpense(string walletName,exspense_info info)
 		vector <Expense> expenses(nofExpenses);
 		if (nofExpenses < 1)
 		{
-			cout << "Looks like you haven't register any expenses yet";
 			return   vector<Expense> (1);
 		}
 		
@@ -146,7 +146,7 @@ void FileHandler:: saveExpense(string walletName,exspense_info info)
 		// this gets all the wallets names
 		//C:\\Users\\mercy\\source\\repos\\MonthlyExpenses-Manager-System\\MonthlyExpenseSystem\\Data
 		//C:\\Users\\ahmed\\source\\repos\\MonthlyExpenses-Manager-System\\MonthlyExpenseSystem\\Data
-		string path = "C:\\Users\\mercy\\source\\repos\\MonthlyExpenses-Manager-System\\MonthlyExpenseSystem\\Data";
+		string path = "C:\\Users\\ahmed\\source\\repos\\MonthlyExpenses-Manager-System\\MonthlyExpenseSystem\\Data";
 		for (const auto& entry : fs::directory_iterator(path))
 		{
 			foundedWallet = entry.path().filename().string();
@@ -186,22 +186,24 @@ void FileHandler:: saveExpense(string walletName,exspense_info info)
 		// this gets all the wallets names
 		vector<string>wallets;
 		//C:\\Users\\ahmed\\source\\repos\\MonthlyExpenses - Manager - System\\MonthlyExpenseSystem\\Data
-		//C:\\Users\\mercy\\source\\repos\\MonthlyExpenses-Manager-System\\MonthlyExpenseSystem\\Data
-		string path = "C:\\Users\\mercy\\source\\repos\\MonthlyExpenses-Manager-System\\MonthlyExpenseSystem\\Data";
+
+		string path = "C:\\Users\\ahmed\\source\\repos\\MonthlyExpenses-Manager-System\\MonthlyExpenseSystem\\Data";
+		cout << "Enter 1 for cash wallet" << endl;
+		cout << "Enter 2 for credit card wallet" << endl;
+		cout << "Enter 3 for debit card wallet" << endl;
 		for (const auto& entry : fs::directory_iterator(path))
 		{
 			string walletName = entry.path().filename().string();
 			if (walletName == "incomes.txt")
 				continue;
-
-			std::cout <<"Enter "<<nofWallets+1<<"- "<< walletName  << std::endl;
-
+			//std::cout <<"Enter "<<nofWallets+1<<"- "<< walletName  << std::endl;
+			
 			wallets.push_back(walletName);
 
 			nofWallets++;
 		}
 
-		cout << "Number of wallets found : " << nofWallets << endl;
+		
 			
 		return wallets;
 	}
@@ -210,12 +212,28 @@ void FileHandler:: saveExpense(string walletName,exspense_info info)
 	{
 		string walletName = "";
 
-		cout << "please choose the number of the  wallet \n";
+		
 
 		vector<string> walletsNames = scanAllWallets();
-		cout << endl;
 
 		cin >> walletName;
+		/* if (myChoice == 2)*/
+			 cout << "Enter 4 for all" << endl;
+		while (walletName != "1" && walletName != "2" && walletName != "3" && walletName != "4")
+		{
+			/*bool flag = false;*/
+			/*if (myChoice == 2)*/
+				/*while (walletName != "1" && walletName != "2" && walletName != "3" && walletName != "4")
+				{
+					cout << "Enter valid choice : ";
+					cin >> walletName;
+					flag = true;
+				}
+				if (flag == true)
+					break;*/
+			cout << "Enter valid choice : ";
+			cin >> walletName;
+		}
 		int chosenWallet = stoi(walletName);
 		for (int i = 1; i < walletsNames.size() + 1; i++)
 
@@ -229,58 +247,15 @@ void FileHandler:: saveExpense(string walletName,exspense_info info)
 		return walletName;
 	}
 
-	void FileHandler::   deleteWallet(Wallet wallet)
+	void FileHandler:: deleteWallet(Wallet wallet)
 	{
 
 	}
-
-
-	/*
-	void FileHandler::loadWallet(string walletFile)
+	void FileHandler::makeWallet(string name)
 	{
-		walletFile = "Data\\" + walletFile;
-
-		//const char* WalletName = fileDestination.c_str();
-
-
-
-		textFile.open(walletFile);
-
-		string line;
-		if (textFile.is_open())
-		{
-			while (getline(textFile, line))
-			{
-
-				
-				cout << line << '\n';
-
-
-			}
-
-			textFile.close();
-		}
-
-
+		name = "Data\\" + name;
+		fstream WalletFile(name, ios::out | ios::app);
 	}
-
-	*/
-
-
-
-
-	void FileHandler::  makeWallet( string name)
-{
-//output the txt file with wallet name
-	name = "Data\\" + name;
-	//const char * WalletName = name.c_str();
-
-
-	//should check here if the file is already there
-	 fstream WalletFile(name,ios::out |ios::app);
-	
-
-}
 
 	
 
