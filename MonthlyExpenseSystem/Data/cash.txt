@@ -1,12 +1,1 @@
-2-2-2021,2,2,2,2,2;
-2-2-2021,2,2,2,2,2;
-2-2-2021,2,2,2,2,2;
-2-2-2021,2,2,2,2,2;
-12-12-2021,2,2,22,22,2;
-12-12-2021,yy,yy,12,12,y;
-31-5-2021,desha,games,1,2000,ahmed;
-31-5-2021,kna g3nin ,food,3,15,ftar ;
-3-3-2025,,33,3,3,13;20-12-2021,to drink,diaries,20,1,Milk;
-20-1-2021,smoothy with orange and carrot,bevareages,2,5,smoothy;
-4-5-2021,drink,diaaries,2,3,milk;
-22-12-2021,2,2,2,22,2;
+1-12-2021,milk,beverage,20,1,smoothy;4-2-2021,fd,diary,1,3,milk;3-4-2021,dasd,g,1,2,adas;

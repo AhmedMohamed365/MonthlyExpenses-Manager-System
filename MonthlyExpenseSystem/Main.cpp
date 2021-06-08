@@ -92,6 +92,7 @@ bool menu()
 	}
 	else if (choice == "3")
 	{
+		currentWallet = handler.chooseWalletFile();
 		LoadWithFilter(currentWallet);
 		return true;
 	}
@@ -188,22 +189,19 @@ exspense_info validData()
 	getline(cin, description);
 	cout << "Enter exspense category:";
 	getline(cin, category);
-	while (amount <= 0)
-	{
-		if (amount != 0)
-			cout << "Enter valid exspense amount:";
-		else
-			cout << "Enter exspense amount:";
-		cin >> amount;
+	cout << "Enter exspense amount:" << endl;
+	while (!(cin >> amount) || amount < 0) {
+		cout << "Enter exspense amount:" << endl;
+		cin.clear();
+		cin.ignore(123, '\n');
 	}
-	while (price <= 0)
-	{
-		if (price != 0)
-			cout << "Enter valid exspense price:";
-		else
-			cout << "Enter exspense price:";
-		cin >> price;
+	cout << "Enter price amount:" << endl;
+	while (!(cin >> price) || price < 0) {
+		cout << "Enter price amount:" << endl;
+		cin.clear();
+		cin.ignore(123, '\n');
 	}
+	
 	if ((amount*price) > (Wallet ::getTotalMoney()))
 	{
 		cout << "you cant compelete this, no enough money "<<endl;
@@ -212,29 +210,23 @@ exspense_info validData()
 		exspense_info info(name, description, category, -1, price, day, month, year);
 		return info;
 	}
-	while (day <= 0 || day > 31)
-	{
-		if (day != 0)
-			cout << "Enter valid day:";
-		else
-			cout << "Enter the day:";
-		cin >> day;
+	cout << "Enter the day:" << endl;
+	while (!(cin >> day) || day <= 0 || day >= 31) {
+		cout << "Enter the day:" << endl;
+		cin.clear();
+		cin.ignore(123, '\n');
 	}
-	while (month <= 0 || month > 12)
-	{
-		if (month != 0)
-			cout << "Enter valid month:";
-		else
-			cout << "Enter the month:";
-		cin >> month;
+	cout << "Enter the month:" << endl;
+	while (!(cin >> month) || month <= 0 || month >= 31) {
+		cout << "Enter the month:" << endl;
+		cin.clear();
+		cin.ignore(123, '\n');
 	}
-	while (year <= 2020 || year > 2100)
-	{
-		if (year !=0 )
-			cout << "Enter valid year:";
-		else
-			cout << "Enter the year:";
-		cin >> year;
+	cout << "Enter the year:" << endl;
+	while (!(cin >> year) || year <= 2020 || year >= 2100) {
+		cout << "Enter the year:" << endl;
+		cin.clear();
+		cin.ignore(123, '\n');
 	}
 	exspense_info info(name, description, category, amount, price, day, month, year);
 	return info;
@@ -289,9 +281,7 @@ void LoadWithFilter(string currentWallet) {
 			cin >> monthTest;
 			cout << "enter the day" << endl;
 			cin >> dayTest;
-			expenses = filter.filter_day(expenses, dayTest,"1");
-			expenses = filter.filter_month(expenses, monthTest,"1");
-			expenses = filter.filter_year(expenses, yearTest,"1");
+			expenses = filter.filter_date(expenses, yearTest, monthTest, dayTest, filterType());
 			break;
 		}
 		filterChoice = 'n';
