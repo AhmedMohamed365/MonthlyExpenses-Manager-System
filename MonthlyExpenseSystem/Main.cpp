@@ -402,9 +402,6 @@ void loadAll(string currentWallet,int number) {
 			cout << endl;
 		}
 	}
-	
-
-	
 }
 string filterType()
 {
