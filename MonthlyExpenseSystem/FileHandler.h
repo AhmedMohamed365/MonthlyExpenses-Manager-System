@@ -42,7 +42,7 @@ private:
 public:
 	fstream textFile;
 
-
+	
 	int getNumberOfWallets();
 	//this to split string used for date 
 	static vector<string>  split(string s, string del = ",");

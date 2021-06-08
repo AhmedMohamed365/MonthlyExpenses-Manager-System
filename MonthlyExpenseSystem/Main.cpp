@@ -11,7 +11,7 @@ bool menu();
 exspense_info validData();
 void LoadWithFilter(string currentWallet);
 string filterType();
-
+Wallet wallet;
 void loadAll(string currentWallet, int number);
 //current wallet file
 string currentWallet = "cash.txt";
@@ -66,7 +66,7 @@ bool menu()
 			Wallet wallet(walletName,income);
 			wallet.saveIncome(income);
 
-			float loaded = wallet.loadIncome(walletName);
+			float loaded = wallet.loadRemaning(walletName);
 			if (income == loaded )
 			{
 				cout << "\nyour income is saved and loaded correctly" << loaded;
@@ -127,12 +127,14 @@ bool menu()
 	}
 	else if (choice == "4")
 	{
-
+		
 		//needs to review
 		system("Color FC");
 		
 		cout << "\n Enter 1: choose your current wallet remaining " << currentWallet << "\n or Enter 2 : choose to see remaining from all wallets\n";
 		int input = -1;
+
+		cin >> input;
 		Wallet wallet;
 		if (input == 1)
 		{
@@ -140,7 +142,7 @@ bool menu()
 			// I will add here to choose total money or  view remaining for one wallet only 
 			cout << "your ramaining money is : ";
 			
-			cout << wallet.loadIncome(currentWallet) - handler.totalExpenses(currentWallet) << "LE" << endl;
+			cout << wallet.loadRemaning(currentWallet) - handler.totalExpenses(currentWallet) << "LE" << endl;
 		}
 			
 
@@ -188,7 +190,7 @@ bool menu()
 			Wallet wallet;
 			wallet.increaseIncome(income, walletsNames ,chosenWallet );
 
-			float loaded = wallet.loadIncome(walletName);
+			float loaded = wallet.loadRemaning(walletName);
 			//green color
 			system("Color F2");
 				cout << "\nyour income is saved and loaded correctly it's now : " << loaded;
@@ -231,10 +233,11 @@ exspense_info validData()
 		cin.ignore(123, '\n');
 	}
 	
-	if ((amount*price) > (Wallet ::getTotalMoney()))
+	float remaning = (amount * price) - (wallet.loadRemaning(currentWallet));
+	if (remaning <0 )
 	{
 		cout << "you cant compelete this, no enough money "<<endl;
-		cout << "your remaining money : " << Wallet::getTotalMoney()<< " LE" <<endl;
+		cout << "your remaining money : " << wallet.loadRemaning(currentWallet)- handler.totalExpenses(currentWallet) << " LE" <<endl;
 		cout << "you need : " << ((double)amount * price) << " LE " << endl;
 		exspense_info info(name, description, category, -1, price, day, month, year);
 		return info;
@@ -258,6 +261,9 @@ exspense_info validData()
 		cin.ignore(123, '\n');
 	}
 	exspense_info info(name, description, category, amount, price, day, month, year);
+
+	wallet.setName(currentWallet);
+	wallet.saveIncome(remaning);
 	return info;
 }
 void LoadWithFilter(string currentWallet) {

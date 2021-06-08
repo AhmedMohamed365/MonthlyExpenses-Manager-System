@@ -40,7 +40,7 @@ vector<string> FileHandler::split(string s, string del)
 void FileHandler::countExpenses(string currentWallet)
 {
 	nofExpenses = 0;
-	currentWallet = "Data\\" + currentWallet;
+	//currentWallet = "Data\\" + currentWallet;
 	textFile.open(currentWallet,ios::in);
 
 	int begin = 0;
