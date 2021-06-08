@@ -99,7 +99,7 @@ void FileHandler:: saveExpense(string walletName,exspense_info info)
 	
 
 
-		textFile.open("Data\\wallet.txt");
+		textFile.open("Data\\cash.txt");
 		
 		string line;
 		if (textFile.is_open())
@@ -139,7 +139,9 @@ void FileHandler:: saveExpense(string walletName,exspense_info info)
 		string foundedWallet = "";
 
 		// this gets all the wallets names
-		string path = "C:\\Users\\mercy\\source\\repos\\MonthlyExpenses-Manager-System\\MonthlyExpenseSystem\\Data";
+		//C:\\Users\\mercy\\source\\repos\\MonthlyExpenses-Manager-System\\MonthlyExpenseSystem\\Data
+		//C:\\Users\\ahmed\\source\\repos\\MonthlyExpenses - Manager - System\\MonthlyExpenseSystem\\Data
+		string path = "C:\\Users\\ahmed\\source\\repos\\MonthlyExpenses-Manager-System\\MonthlyExpenseSystem\\Data";
 		for (const auto& entry : fs::directory_iterator(path))
 		{
 			foundedWallet = entry.path().filename().string();
@@ -178,7 +180,9 @@ void FileHandler:: saveExpense(string walletName,exspense_info info)
 		nofWallets = 0;
 		// this gets all the wallets names
 		vector<string>wallets;
-		string path = "C:\\Users\\mercy\\source\\repos\\MonthlyExpenses-Manager-System\\MonthlyExpenseSystem\\Data";
+		//C:\\Users\\ahmed\\source\\repos\\MonthlyExpenses - Manager - System\\MonthlyExpenseSystem\\Data
+		//C:\\Users\\mercy\\source\\repos\\MonthlyExpenses-Manager-System\\MonthlyExpenseSystem\\Data
+		string path = "C:\\Users\\ahmed\\source\\repos\\MonthlyExpenses-Manager-System\\MonthlyExpenseSystem\\Data";
 		for (const auto& entry : fs::directory_iterator(path))
 		{
 			string walletName = entry.path().filename().string();

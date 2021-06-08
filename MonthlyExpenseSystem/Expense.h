@@ -75,10 +75,10 @@ struct exspense_info {
 		this->amount = amount;
 
 		this->price = price;
-
+		this->day = day;
+		this->month = month;
+		this->year = year;
 		date = to_string(day) + '-' + to_string(month) + '-' + to_string(year);
-
-
 	}
 };
 class Expense
@@ -102,6 +102,9 @@ public:
 	string get_date();
 	int get_amount();
 	float  get_price();
+	int get_year();
+	int get_month();
+	int get_day();
 	//void add_expense(string icategory, int idate, int imonth, int iyear);
 
 };

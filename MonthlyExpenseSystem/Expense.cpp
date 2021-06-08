@@ -46,3 +46,15 @@ float Expense::get_price()
 {
 	return info.price;
 }
+int Expense::get_year()
+{
+	return info.year;
+}
+int Expense::get_month()
+{
+	return info.month;
+}
+int Expense::get_day()
+{
+	return info.day;
+}

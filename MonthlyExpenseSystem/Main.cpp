@@ -71,8 +71,6 @@ bool menu()
 				cout << "\nyour income is saved and loaded correctly" << loaded;
 			}
 		}
-	
-
 		return true;
 	}
 	else if (choice == "2")
@@ -169,7 +167,6 @@ bool menu()
 	}
 	else if (choice == "6")
 	{
-		system("Color F2");
 		cout << "good bye"<<endl;
 		return false;
 	}
@@ -279,7 +276,7 @@ void LoadWithFilter(string currentWallet) {
 			float  amountTest;
 			cin >> amountTest;
 			cout << "Enter filter type :";
-			expenses = filter.filter_amount(expenses, amountTest, filterType());
+			expenses = filter.filter_amount(expenses, amountTest, "=");
 			break;
 		}
 		cout << "if you want to apply date filter enter y if not enter n?" << endl;
