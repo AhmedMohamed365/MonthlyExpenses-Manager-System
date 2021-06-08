@@ -104,14 +104,30 @@ bool menu()
 	}
 	else if (choice == "4")
 	{
+
+		//needs to review
 		system("Color FC");
 		
-		// I will add here to choose total money or  view remaining for one wallet only 
-		cout << "your ramaining money is : ";
+		cout << "\n Enter 1: choose your current wallet remaining " << currentWallet << "\n or Enter 2 : choose to see remaining from all wallets\n";
+		int input = -1;
 		Wallet wallet;
-		cout << wallet.loadIncome(currentWallet) - handler.totalExpenses(currentWallet) << "LE" << endl;
-		//This gets all money from all wallets - all expenses from all wallets 
-		cout << Wallet::getTotalMoney() - handler.totalPrices()<<"LE" << endl;
+		if (input == 1)
+		{
+			currentWallet = handler.chooseWalletFile();
+			// I will add here to choose total money or  view remaining for one wallet only 
+			cout << "your ramaining money is : ";
+			
+			cout << wallet.loadIncome(currentWallet) - handler.totalExpenses(currentWallet) << "LE" << endl;
+		}
+			
+
+		else if (input == 2)
+		{
+			//This gets all money from all wallets - all expenses from all wallets 
+			cout << Wallet::getTotalMoney() - handler.totalPrices() << "LE" << endl;
+		}
+		
+		
 		return true;
 	}
 
