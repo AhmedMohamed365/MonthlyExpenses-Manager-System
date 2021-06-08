@@ -11,28 +11,35 @@ filter::filter()
 vector<Expense> filter::filter_amount(vector<Expense> v, float amount, string filter_type)
 {
     vector<Expense> ret;
-    for (int i = 0; i < v.size(); ++i)
-    {
-        
-        
-            if (filter_type == "=") 
-                if (v[i].info.amount == amount) 
+    for (int i = 0; i < v.size(); ++i) {
+        if (filter_type == "=")
+        {
+            if (v[i].info.amount == amount)
                 ret.push_back(v[i]);
-            else if (filter_type == "<>") 
-                if (v[i].info.amount != amount)
-                    ret.push_back(v[i]);
-            else if (filter_type == ">=") 
-                if (v[i].info.amount >= amount)
-                    ret.push_back(v[i]);
-            else if (filter_type == "<=") 
-                if (v[i].info.amount <= amount)
-                    ret.push_back(v[i]);
-            else if (filter_type == "<")
-                if (v[i].info.amount < amount)
-                    ret.push_back(v[i]);
-            else if (filter_type == ">") 
-                if (v[i].info.amount > amount)
-                    ret.push_back(v[i]);
+        }
+
+        else if (filter_type == "<>") {
+            if (v[i].info.amount != amount)
+                ret.push_back(v[i]);
+        }
+        else if (filter_type == ">=") {
+            if (v[i].info.amount >= amount)
+                ret.push_back(v[i]);
+        }
+        else if (filter_type == "<=") {
+            if (v[i].info.amount <= amount)
+                ret.push_back(v[i]);
+        }
+        else if (filter_type == "<")
+        {
+            if (v[i].info.amount < amount)
+                ret.push_back(v[i]);
+        }
+        else if (filter_type == ">")
+        {
+            if (v[i].info.amount > amount)
+                ret.push_back(v[i]);
+        }
         }
     return ret;
 }
