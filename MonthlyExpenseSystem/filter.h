@@ -19,3 +19,4 @@ public:
     vector<Expense> filter_price(vector<Expense> v, float price, string  filter_type);
     filter();
 };
+
