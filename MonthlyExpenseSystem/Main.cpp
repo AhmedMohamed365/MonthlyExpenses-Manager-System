@@ -312,7 +312,7 @@ string filterType()
 	string expression;
 	cout << "Enter filter type : ";
 	cin >> expression;
-	while (expression !="<>"&&expression != ">" && expression != "<" && expression != "<=" &&  expression != "<=" && expression != "=")
+	while (expression !="<>"&&expression != ">" && expression != "<" && expression != "<=" &&  expression != ">=" && expression != "=")
 	{
 		cout << "Enter valid choice :";
 		cin >> expression;
