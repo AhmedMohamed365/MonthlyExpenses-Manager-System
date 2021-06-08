@@ -105,8 +105,11 @@ bool menu()
 	else if (choice == "4")
 	{
 		system("Color FC");
+		
+		// I will add here to choose total money or  view remaining for one wallet only 
 		cout << "your ramaining money is : ";
-
+		Wallet wallet;
+		cout << wallet.loadIncome(currentWallet) - handler.totalExpenses(currentWallet) << "LE" << endl;
 		//This gets all money from all wallets - all expenses from all wallets 
 		cout << Wallet::getTotalMoney() - handler.totalPrices()<<"LE" << endl;
 		return true;

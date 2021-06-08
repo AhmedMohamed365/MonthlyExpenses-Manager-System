@@ -75,7 +75,7 @@ public:
 	//void loadWallet(string walletName);
 
 
-
+	float totalExpenses(string walletName);
 	//text file section
 
 	

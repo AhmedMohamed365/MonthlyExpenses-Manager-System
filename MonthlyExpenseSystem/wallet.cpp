@@ -111,6 +111,9 @@ float Wallet::loadIncome(string walletName)
 
 }
 
+
+
+
  float Wallet::getTotalMoney()
 {
 

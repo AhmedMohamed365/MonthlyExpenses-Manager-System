@@ -275,6 +275,36 @@ void FileHandler:: saveExpense(string walletName,exspense_info info)
 
 	
 
+	float FileHandler::totalExpenses(string walletName)
+	{
+		float total = 0;
+		
+			countExpenses("Data\\"+walletName);
+
+			vector <Expense> expenses(nofExpenses);
+			textFile.open("Data\\" + walletName, ios::in);
+
+			string line;
+
+			if (textFile.is_open())
+			{
+				int i = 0;
+				while (getline(textFile, line, ';'))
+				{
+					exspense_info expenseInfo(split(line, ","));
+
+					expenses[i] = Expense(expenseInfo);
+					total += (expenses[i].get_amount() * expenses[i].get_price());
+					i++;
+				}
+				textFile.close();
+
+
+				return total;
+
+			}
+	}
+
 	FileHandler::FileHandler() {
 	// TODO Auto-generated constructor stub
 
