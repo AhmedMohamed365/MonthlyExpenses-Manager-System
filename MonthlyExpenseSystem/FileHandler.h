@@ -47,7 +47,7 @@ public:
 
 	//expense section
 
-	void countExpenses();
+	void countExpenses(string currentWallet);
 
 		
 	

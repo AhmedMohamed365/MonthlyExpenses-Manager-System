@@ -29,7 +29,7 @@ public:
 	float loadIncome(string walletName);
 
 	// independant function of any exact wallet : returns all wallets' incomes
-	static float getTotalIncome(); 
+	static float getTotalMoney(); 
 	//expenses section
 
 

@@ -32,10 +32,11 @@ vector<string> FileHandler::split(string s, string del)
 	return items;
 }
 
-void FileHandler::countExpenses()
+void FileHandler::countExpenses(string currentWallet)
 {
 	nofExpenses = 0;
-	textFile.open("Data\\wallet.txt");
+	currentWallet = "Data\\" + currentWallet;
+	textFile.open(currentWallet,ios::in);
 
 	int begin = 0;
 
@@ -85,7 +86,7 @@ void FileHandler:: saveExpense(string walletName,exspense_info info)
 	vector<Expense> FileHandler::loadWallet(string walletName)
 	{
 
-		countExpenses();
+		countExpenses(walletName);
 
 		vector <Expense> expenses(nofExpenses);
 		if (nofExpenses < 1)
@@ -191,7 +192,7 @@ void FileHandler:: saveExpense(string walletName,exspense_info info)
 			nofWallets++;
 		}
 
-		cout << "Number of wallets found : " << nofWallets;
+		cout << "Number of wallets found : " << nofWallets << endl;
 			
 		return wallets;
 	}
@@ -283,27 +284,37 @@ void FileHandler:: saveExpense(string walletName,exspense_info info)
 }
 float FileHandler::totalPrices()
 {
-	countExpenses();
-	
-	vector <Expense> expenses(nofExpenses);
-	textFile.open("Data\\wallet.txt");
+	vector<string>wallets = scanAllWallets();
+	nofWallets = wallets.size();
 
-	string line;
 	float total = 0;
-	if (textFile.is_open())
+	for (int i = 0; i < nofWallets; i++)
 	{
-		int i = 0;
-		while (getline(textFile, line, ';'))
+		countExpenses(wallets[i]);
+
+		vector <Expense> expenses(nofExpenses);
+		textFile.open("Data\\"+wallets[i], ios::in);
+
+		string line;
+		
+		if (textFile.is_open())
 		{
-			exspense_info expenseInfo(split(line, ","));
+			int i = 0;
+			while (getline(textFile, line, ';'))
+			{
+				exspense_info expenseInfo(split(line, ","));
 
-			expenses[i] = Expense(expenseInfo);
-			total += (expenses[i].get_amount()* expenses[i].get_price());
-			i++;
+				expenses[i] = Expense(expenseInfo);
+				total += (expenses[i].get_amount() * expenses[i].get_price());
+				i++;
+			}
+			textFile.close();
+
 		}
-		textFile.close();
-
 	}
+	
+	
+	
 	return total;
 }
 FileHandler::~FileHandler() {
