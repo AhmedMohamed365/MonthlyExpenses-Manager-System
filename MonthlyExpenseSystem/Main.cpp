@@ -17,16 +17,11 @@ string currentWallet = "cash.txt";
 
 // is it working ? 
 int main() {
-
-	system("Color F0");
 	cout << "\t\t\t ****Welcome to Montly Expense System****\t\t\t " << endl;
 	cout << "\t\t\t  ***                MENU           ***\t\t\t  " << endl;
 	while (menu());
 	return 0;
 }
-
-
-
 bool menu()
 {
 	if (choice != "-1")
