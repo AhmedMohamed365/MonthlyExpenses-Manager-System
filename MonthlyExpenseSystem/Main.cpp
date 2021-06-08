@@ -94,20 +94,13 @@ bool menu()
 	else if (choice == "3")
 	{
 		int input = -1;
-		cout << "\n Enter your choice : ";
-
 		cin >> input;
 		if (input == 1)
 		{
 			currentWallet = handler.chooseWalletFile();
+			loadAll(currentWallet, 2);
 			LoadWithFilter(currentWallet);
 		}
-
-		else if (input == 2)
-		{
-			loadAll( currentWallet, 2);
-		}
-
 		return true;
 	}
 	else if (choice == "4")
@@ -289,12 +282,26 @@ void LoadWithFilter(string currentWallet) {
 		while (filterChoice == 'y')
 		{
 			int yearTest, monthTest, dayTest;
-			cout << "enter the year" << endl;
-			cin >> yearTest;
-			cout << "enter the month" << endl;
-			cin >> monthTest;
-			cout << "enter the day" << endl;
-			cin >> dayTest;
+			cout << "Enter the year" << endl;
+			while (!(cin >> yearTest) || yearTest <= 2020 || yearTest >= 2100) {
+				cout << "Enter the year:" << endl;
+				cin.clear();
+				cin.ignore(123, '\n');
+			}
+			
+			cout << "Enter the Month" << endl;
+			while (!(cin >> monthTest) || monthTest <= 0 || monthTest >= 31) {
+				cout << "Enter the month:" << endl;
+				cin.clear();
+				cin.ignore(123, '\n');
+			}
+			
+			cout << "Enter the day" << endl;
+			while (!(cin >> dayTest) || dayTest <= 0 || dayTest >= 31) {
+				cout << "Enter the day:" << endl;
+				cin.clear();
+				cin.ignore(123, '\n');
+			}
 			expenses = filter.filter_date(expenses, yearTest, monthTest, dayTest, filterType());
 			break;
 		}
@@ -332,8 +339,6 @@ void loadAll(string currentWallet,int number) {
 				k++;
 			}
 		}
-		
-
 		filter filter;
 
 		cout << "if you want to apply filters enter y else enter anything " << endl;
@@ -381,9 +386,7 @@ void loadAll(string currentWallet,int number) {
 				cin >> monthTest;
 				cout << "enter the day" << endl;
 				cin >> dayTest;
-				expenses = filter.filter_day(expenses, dayTest, "1");
-				expenses = filter.filter_month(expenses, monthTest, "1");
-				expenses = filter.filter_year(expenses, yearTest, "1");
+				expenses = filter.filter_date(expenses, yearTest, monthTest, dayTest, filterType());
 				break;
 			}
 			filterChoice = 'n';
