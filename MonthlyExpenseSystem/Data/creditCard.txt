@@ -1,1 +1,1 @@
-1-12-2021,milk,assdsdsdsdsdsdsds,20,1,smoothy;
+2-1-2021,ada,asda,1,500,das;2-1-2021,dasd,asda,1,50,dasd;

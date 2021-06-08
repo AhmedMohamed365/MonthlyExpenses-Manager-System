@@ -1,1 +1,1 @@
-1-12-2021,milk,beverage,20,1,smoothy;4-2-2021,fd,diary,1,3,milk;3-4-2021,dasd,g,1,2,adas;
+2-1-2021,dasdas,asdas,1,1,lban;
