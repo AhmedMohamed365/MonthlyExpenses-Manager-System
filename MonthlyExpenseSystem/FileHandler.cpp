@@ -174,7 +174,7 @@ void FileHandler:: saveExpense(string walletName,exspense_info info)
 
 	vector<string> FileHandler::  scanAllWallets()
 	{
-
+		nofWallets = 0;
 		// this gets all the wallets names
 		vector<string>wallets;
 		string path = "C:\\Users\\mercy\\source\\repos\\MonthlyExpenses-Manager-System\\MonthlyExpenseSystem\\Data";

@@ -196,7 +196,7 @@ exspense_info validData()
 	{
 		cout << "you cant compelete this, no enough money "<<endl;
 		cout << "your remaining money : " << Wallet::getTotalIncome()<< " LE" <<endl;
-		cout << "you need : " << double(amount * price) << " LE " << endl;
+		cout << "you need : " << ((double)amount * price) << " LE " << endl;
 		exspense_info info(name, description, category, -1, price, day, month, year);
 		return info;
 	}
