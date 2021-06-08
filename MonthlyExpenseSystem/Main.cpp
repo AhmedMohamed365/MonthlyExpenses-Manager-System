@@ -93,14 +93,36 @@ bool menu()
 	}
 	else if (choice == "3")
 	{
+
 		int input = -1;
+
+		cout << "please choose wallet file :  \n";
+		vector<string> walletsNames = handler.scanAllWallets();
+		cout << endl;
+
+		cout << "or enter :" << handler.getNumberOfWallets() + 1 << " to see  expenses from all wallets\n";
 		cin >> input;
-		if (input == 1)
-		{
-			currentWallet = handler.chooseWalletFile();
+
+		//load all wallets' expenses
+		if (input == handler.getNumberOfWallets() + 1)
 			loadAll(currentWallet, 2);
+		else
+		{
+			//load the chosen wallet
+			
+			for (int i = 1; i < walletsNames.size() + 1; i++)
+
+				if (input == i)
+				{
+					currentWallet = walletsNames[i - 1];
+
+					break;
+				}
+
 			LoadWithFilter(currentWallet);
 		}
+			
+		
 		return true;
 	}
 	else if (choice == "4")
