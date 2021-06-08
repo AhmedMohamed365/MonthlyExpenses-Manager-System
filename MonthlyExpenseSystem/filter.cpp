@@ -40,25 +40,24 @@ vector<Expense> filter::filter_price(vector<Expense> v, float price, string filt
     vector<Expense> ret;
         for (int i = 0; i < v.size(); ++i) {
             if (filter_type == "=")
-                if (v[i].get_price() == price)
+                if (v[i].info.price == price)
                     ret.push_back(v[i]);
             if (filter_type == "<>") 
-                if (v[i].get_price() != price)
+                if (v[i].info.price != price)
                     ret.push_back(v[i]);
-            
             else if (filter_type == ">=") 
-                if (v[i].get_price() >= price)
+                if (v[i].info.price >= price)
                     ret.push_back(v[i]);
             else if (filter_type == "<=") 
-                if (v[i].get_price() <= price)
+                if (v[i].info.price <= price)
                     ret.push_back(v[i]);
             
             else if (filter_type == "<") 
-                if (v[i].get_price() < price)
+                if (v[i].info.price < price)
                     ret.push_back(v[i]);
 
             else if (filter_type == ">") 
-                if (v[i].get_price() > price)
+                if (v[i].info.price > price)
                     ret.push_back(v[i]);
         }
         return ret;
