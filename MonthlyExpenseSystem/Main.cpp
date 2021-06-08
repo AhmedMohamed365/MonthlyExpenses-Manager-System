@@ -105,8 +105,13 @@ bool menu()
 	else if (choice == "4")
 	{
 		system("Color FC");
+		
+		// I will add here to choose total money or  view remaining for one wallet only 
 		cout << "your ramaining money is : ";
-		cout << Wallet::getTotalIncome() - handler.totalPrices()<<"LE" << endl;
+		Wallet wallet;
+		cout << wallet.loadIncome(currentWallet) - handler.totalExpenses(currentWallet) << "LE" << endl;
+		//This gets all money from all wallets - all expenses from all wallets 
+		cout << Wallet::getTotalMoney() - handler.totalPrices()<<"LE" << endl;
 		return true;
 	}
 
@@ -191,10 +196,10 @@ exspense_info validData()
 			cout << "Enter exspense price:";
 		cin >> price;
 	}
-	if ((amount*price) > (Wallet ::getTotalIncome()))
+	if ((amount*price) > (Wallet ::getTotalMoney()))
 	{
 		cout << "you cant compelete this, no enough money "<<endl;
-		cout << "your remaining money : " << Wallet::getTotalIncome()<< " LE" <<endl;
+		cout << "your remaining money : " << Wallet::getTotalMoney()<< " LE" <<endl;
 		cout << "you need : " << ((double)amount * price) << " LE " << endl;
 		exspense_info info(name, description, category, -1, price, day, month, year);
 		return info;

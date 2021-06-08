@@ -111,8 +111,13 @@ float Wallet::loadIncome(string walletName)
 
 }
 
- float Wallet::getTotalIncome()
+
+
+
+ float Wallet::getTotalMoney()
 {
+
+	 //this code can't sum the last edited money
 	fstream textFile;
 	textFile.open("Data\\incomes.txt");
 
