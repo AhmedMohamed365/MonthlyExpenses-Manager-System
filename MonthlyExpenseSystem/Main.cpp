@@ -37,11 +37,12 @@ bool menu()
 	if (choice == "1")
 	{
 		// this code update the montly income to new one
-		string walletName = "";
+		//string walletName = "";
 		
 		cout << "Enter the wallet name to save a new wallet with it's income\n ";
 
-		vector<string> choices = handler.scanAllWallets();
+		currentWallet = handler.chooseWalletFile();
+		/*vector<string> choices = handler.scanAllWallets();
 		cout << endl;
 
 		cin >> walletName;
@@ -52,7 +53,7 @@ bool menu()
 				walletName = choices[i-1];
 
 				break;
-			}
+			}*/
 		float income = 0;
 
 		cin >> income;
@@ -60,13 +61,15 @@ bool menu()
 		if (income > 0)
 		{
 			// maybe Income should be in wallet constructor ? 
-			if(walletName.find(".txt")==-1)//:
-				walletName = walletName + ".txt";
+			//if(walletName.find(".txt")==-1)//:
+			//	walletName = walletName + ".txt";
 
-			Wallet wallet(walletName,income);
-			wallet.saveIncome(income);
+			Wallet wallet(currentWallet,income);
+			
 
-			float loaded = wallet.loadRemaning(walletName);
+			wallet.saveIncome(income+wallet.loadIncome(currentWallet));
+
+			float loaded = wallet.loadRemaning(currentWallet);
 			if (income == loaded )
 			{
 				cout << "\nyour income is saved and loaded correctly" << loaded;
@@ -142,7 +145,7 @@ bool menu()
 			// I will add here to choose total money or  view remaining for one wallet only 
 			cout << "your ramaining money is : ";
 			
-			cout << wallet.loadRemaning(currentWallet) - handler.totalExpenses(currentWallet) << "LE" << endl;
+			cout << wallet.loadRemaning(currentWallet)  << "LE" << endl;
 		}
 			
 
@@ -233,38 +236,45 @@ exspense_info validData()
 		cin.ignore(123, '\n');
 	}
 	
-	float remaning = (amount * price) - (wallet.loadRemaning(currentWallet));
-	if (remaning <0 )
+	float remaning = wallet.loadRemaning(currentWallet) - (amount * price) ;
+	if (remaning <=0 )
 	{
+		
 		cout << "you cant compelete this, no enough money "<<endl;
 		cout << "your remaining money : " << wallet.loadRemaning(currentWallet)- handler.totalExpenses(currentWallet) << " LE" <<endl;
 		cout << "you need : " << ((double)amount * price) << " LE " << endl;
 		exspense_info info(name, description, category, -1, price, day, month, year);
 		return info;
 	}
-	cout << "Enter the day:" << endl;
-	while (!(cin >> day) || day <= 0 || day >= 31) {
+	else
+	{
 		cout << "Enter the day:" << endl;
-		cin.clear();
-		cin.ignore(123, '\n');
-	}
-	cout << "Enter the month:" << endl;
-	while (!(cin >> month) || month <= 0 || month >= 31) {
+		while (!(cin >> day) || day <= 0 || day >= 31) {
+			cout << "Enter the day:" << endl;
+			cin.clear();
+			cin.ignore(123, '\n');
+		}
 		cout << "Enter the month:" << endl;
-		cin.clear();
-		cin.ignore(123, '\n');
-	}
-	cout << "Enter the year:" << endl;
-	while (!(cin >> year) || year <= 2020 || year >= 2100) {
+		while (!(cin >> month) || month <= 0 || month >= 31) {
+			cout << "Enter the month:" << endl;
+			cin.clear();
+			cin.ignore(123, '\n');
+		}
 		cout << "Enter the year:" << endl;
-		cin.clear();
-		cin.ignore(123, '\n');
-	}
-	exspense_info info(name, description, category, amount, price, day, month, year);
+		while (!(cin >> year) || year <= 2020 || year >= 2100) {
+			cout << "Enter the year:" << endl;
+			cin.clear();
+			cin.ignore(123, '\n');
+		}
+		exspense_info info(name, description, category, amount, price, day, month, year);
 
-	wallet.setName(currentWallet);
-	wallet.saveIncome(remaning);
-	return info;
+		wallet.setName(currentWallet);
+		
+		wallet.saveIncome(remaning);
+		return info;
+	}
+	
+
 }
 void LoadWithFilter(string currentWallet) {
 	char filterChoice = 'n';

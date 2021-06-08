@@ -1,1 +1,1 @@
-cash.txt[2100;debitCard.txt[9000;cash.txt[2;cash.txt[1;cash.txt[1;creditCard.txt[600;cash.txt[900;
+cash.txt[2100;debitCard.txt[9000;cash.txt[2;cash.txt[1;cash.txt[1;creditCard.txt[600;cash.txt[900;creditCard.txt[100;creditCard.txt[50;creditCard.txt[400;creditCard.txt[800;

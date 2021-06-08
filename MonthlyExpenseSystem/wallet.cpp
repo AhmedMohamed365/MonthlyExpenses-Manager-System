@@ -119,7 +119,7 @@ float Wallet::loadRemaning(string walletName)
 float Wallet::loadIncome(string walletName)
 {
 	fstream textFile;
-	textFile.open("Data\\remaining.txt", ios::in);
+	textFile.open("Data\\incomes.txt", ios::in);
 
 	string line;
 	// save it to value this is better 
