@@ -12,6 +12,7 @@ exspense_info validData();
 void LoadWithFilter(string currentWallet);
 string filterType();
 
+void loadAll(string currentWallet, int number);
 //current wallet file
 string currentWallet = "cash.txt";
 
@@ -92,8 +93,21 @@ bool menu()
 	}
 	else if (choice == "3")
 	{
-		currentWallet = handler.chooseWalletFile();
-		LoadWithFilter(currentWallet);
+		int input = -1;
+		cout << "\n Enter your choice : ";
+
+		cin >> input;
+		if (input == 1)
+		{
+			currentWallet = handler.chooseWalletFile();
+			LoadWithFilter(currentWallet);
+		}
+
+		else if (input == 2)
+		{
+			loadAll( currentWallet, 2);
+		}
+
 		return true;
 	}
 	else if (choice == "4")
@@ -307,6 +321,98 @@ void LoadWithFilter(string currentWallet) {
 		expenses[i].display_data();
 		cout << endl;
 	}
+}
+
+
+void loadAll(string currentWallet,int number) {
+	char filterChoice = 'n';
+
+	vector<string> wallets = handler.scanAllWallets();
+	int k = 0;
+	vector<Expense> expenses(50);
+	if (number == 2)
+	{
+	
+		for (int i = 0; i < wallets.size(); i++)
+		{
+			vector<Expense> temp = handler.loadWallet(wallets[i]);
+
+			for (int j = 0; j < temp.size(); j++)
+			{
+				expenses[k] = temp[j];
+				k++;
+			}
+		}
+		
+
+		filter filter;
+
+		cout << "if you want to apply filters enter y else enter anything " << endl;
+		cin >> filterChoice;
+		filterChoice = tolower(filterChoice);
+		while (filterChoice == 'y')
+		{
+			cout << "in filter type you will be able to enter this choices" << endl;
+			cout << "1) = if u want to show equal to " << endl;
+			cout << "2) <> if u want to show not equal to " << endl;
+			cout << "3) <= if u want to show greater than or equal to " << endl;
+			cout << "4) >= if u want to show less than or equal to " << endl;
+			cout << "5) < if u want to show greater than " << endl;
+			cout << "6) > if u want to show greater than " << endl;
+			cout << "if you want to apply category filter enter y " << endl;
+			cin >> filterChoice;
+			filterChoice = tolower(filterChoice);
+			while (filterChoice == 'y')
+			{
+				cout << "Enter the category : " << endl;
+				string categoryTest;
+				cin >> categoryTest;
+				expenses = filter.filter_category(expenses, categoryTest);
+				break;
+			}
+			cout << "if you want to apply amount filter enter y if " << endl;
+			cin >> filterChoice;
+			filterChoice = tolower(filterChoice);
+			while (filterChoice == 'y')
+			{
+				cout << "Enter the amount : " << endl;
+				float  amountTest;
+				cin >> amountTest;
+				expenses = filter.filter_amount(expenses, amountTest, filterType());
+				break;
+			}
+			cout << "if you want to apply date filter enter y if not enter n?" << endl;
+			cin >> filterChoice;
+			while (filterChoice == 'y')
+			{
+				int yearTest, monthTest, dayTest;
+				cout << "enter the year" << endl;
+				cin >> yearTest;
+				cout << "enter the month" << endl;
+				cin >> monthTest;
+				cout << "enter the day" << endl;
+				cin >> dayTest;
+				expenses = filter.filter_day(expenses, dayTest, "1");
+				expenses = filter.filter_month(expenses, monthTest, "1");
+				expenses = filter.filter_year(expenses, yearTest, "1");
+				break;
+			}
+			filterChoice = 'n';
+		}
+		for (int i = 0; i < k; i++)
+		{
+			if (i == 0)
+			{
+				cout << "Date" << '\t' << '\t' << "Name" << '\t' << "Category" << '\t' << "Amount" << '\t' << "Price" << '\t' << "Description" << endl;
+				cout << "-------------------------------------------------------------------" << endl;
+			}
+			expenses[i].display_data();
+			cout << endl;
+		}
+	}
+	
+
+	
 }
 string filterType()
 {
