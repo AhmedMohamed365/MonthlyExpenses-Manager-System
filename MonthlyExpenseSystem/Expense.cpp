@@ -17,10 +17,17 @@ Expense::Expense(exspense_info info)
 	
 }
 
-void Expense::display_data()
+void Expense::display_data(int count1,int count2)
 {
-	if (info.name!="")
-	cout << info.date << '\t' << info.name <<'\t' << info.category << '\t'<< '\t' <<info.amount << '\t' << info.price  << '\t' << info.description <<'\n';
+	if (info.name != "")
+		cout << info.date << '\t' << '\t' << info.name;
+	for (int i = 0; i < count1 + 6- (info.name.size()); i++)
+		cout << " ";
+	cout << info.category;
+	for (int i = 0; i < count2 + 6 -(info.category.size()); i++)
+		cout << " ";
+	cout << info.category;
+	cout << info.amount << '\t' << info.price << '\t' << info.description << '\n';
 }
 string Expense::get_category() 
 {
@@ -39,6 +46,11 @@ string Expense::get_date()
 {
 	return info.date;
 }
+string Expense::get_name()
+{
+	return info.name;
+}
+
 int Expense::get_amount()
 {
 	return info.amount;

@@ -309,20 +309,20 @@ void LoadWithFilter(string currentWallet) {
 		filterChoice = tolower(filterChoice);
 		while (filterChoice == 'y')
 		{
-			cout << "Enter the category : " << endl;
+			cout << "Enter the category : ";
 			string categoryTest;
 			cin >> categoryTest;
 			expenses = filter.filter_category(expenses, categoryTest);
 			break;
 		}
-		cout << "if you want to apply amount filter enter y else press anything " << endl;
+		cout << "if you want to apply amount filter enter y else press anything ";
 		cin >> filterChoice;
 		filterChoice = tolower(filterChoice);
 		while (filterChoice == 'y')
 		{
 		
 			float  amountTest;
-			cout << "Enter exspense amount:" << endl;
+			cout << "Enter exspense amount:";
 			while (!(cin >> amountTest) || amountTest < 0) {
 				cout << "Enter exspense amount:" << endl;
 				cin.clear();
@@ -336,23 +336,23 @@ void LoadWithFilter(string currentWallet) {
 		while (filterChoice == 'y')
 		{
 			int yearTest, monthTest, dayTest;
-			cout << "Enter the year" << endl;
+			cout << "Enter the year" ;
 			while (!(cin >> yearTest) || yearTest <= 2000 || yearTest >= 2021) {
-				cout << "Enter the year:" << endl;
+				cout << "Enter the year:" ;
 				cin.clear();
 				cin.ignore(123, '\n');
 			}
 			
-			cout << "Enter the Month" << endl;
+			cout << "Enter the Month" ;
 			while (!(cin >> monthTest) || monthTest <= 0 || monthTest >=13) {
-				cout << "Enter the month:" << endl;
+				cout << "Enter the month:" ;
 				cin.clear();
 				cin.ignore(123, '\n');
 			}
 			
-			cout << "Enter the day" << endl;
+			cout << "Enter the day" ;
 			while (!(cin >> dayTest) || dayTest <= 0 || dayTest >= 31) {
-				cout << "Enter the day:" << endl;
+				cout << "Enter the day:";
 				cin.clear();
 				cin.ignore(123, '\n');
 			}
@@ -361,15 +361,10 @@ void LoadWithFilter(string currentWallet) {
 		}
 		filterChoice = 'n';
 	}
+	
 	for (int i = 0; i < expenses.size(); i++)
 	{
-		if (i == 0)
-		{
-			cout << "Date" << '\t' << '\t' << "Name" << '\t' << '\t' << '\t' << "Category" << '\t' << "Amount" << '\t' << "Price" << '\t' << "Description" << endl;
-			cout << "-------------------------------------------------------------------" << endl;
-		}
-		expenses[i].display_data();
-		cout << endl;
+		
 	}
 }
 
@@ -445,15 +440,36 @@ void loadAll(string currentWallet,int number) {
 			}
 			filterChoice = 'n';
 		}
-		
+		int count1 = 0;
+		int count2 = 0;
+		for (int i = 0; i < expenses.size(); i++)
+		{
+			string spaces1 = expenses[i].get_name();
+			string spaces2 = expenses[i].get_category();
+			if (spaces1.size() > count1)
+				count1 = spaces1.size();
+			if (spaces2.size() > count2)
+				count2 = spaces2.size();
+		}
 		for (int i = 0; i <expenses.size(); i++)
 		{
 			if (i == 0)
 			{
-				cout << "Date" << '\t' << '\t' << "Name" << '\t' << "Category" << '\t' << "Amount" << '\t' << "Price" << '\t' << "Description" << endl;
-				cout << "-------------------------------------------------------------------" << endl;
+				if (i == 0)
+				{
+					cout << "table structure : ";
+					cout << '(';
+					cout << "Date\\" ;
+					cout << "Name\\";
+					cout << "Category\\";
+					cout << "Amount\\"  << " Price\\"  << "Description)"  << endl;
+					cout << "-----------------------------------------------------------------------" << endl;
+				}
 			}
-			expenses[i].display_data();
+		}
+		for (int i = 0; i < expenses.size()-2; i++)
+		{
+			expenses[i].display_data(count1, count2);
 			cout << endl;
 		}
 	}

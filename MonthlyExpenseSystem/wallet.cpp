@@ -199,13 +199,8 @@ float Wallet::loadIncome(string walletName)
 
 void Wallet::viewExpenses(vector<Expense> allExpenses)
 {
-
-    system("CLS");
-
     for (int expense = 0; expense < allExpenses.size(); expense++)
     {
-       allExpenses[expense].display_data();
-        
     }
 }
 

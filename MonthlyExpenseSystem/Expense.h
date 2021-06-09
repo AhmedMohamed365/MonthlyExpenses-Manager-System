@@ -94,11 +94,11 @@ public:
 	Expense();
 
 	Expense(exspense_info info);
-	void display_data();
+	void display_data(int count1, int count2);
 	string get_category();
 	string get_data();
-	//void expand();
 	string get_date();
+	string get_name();
 	int get_amount();
 	float  get_price();
 	int get_year();
