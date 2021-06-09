@@ -414,6 +414,8 @@ void loadAll(string currentWallet,int number) {
 			cout << "4) >= if you want to show greater than or equal to " << endl;
 			cout << "5) < if you want to show less than " << endl;
 			cout << "6) > if you want to show greater than " << endl;
+
+			cout << "if you want to apply category filter enter y " << endl;
 			cin >> filterChoice;
 			filterChoice = tolower(filterChoice);
 			while (filterChoice == 'y')
@@ -440,12 +442,24 @@ void loadAll(string currentWallet,int number) {
 			while (filterChoice == 'y')
 			{
 				int yearTest, monthTest, dayTest;
-				cout << "enter the year" << endl;
-				cin >> yearTest;
-				cout << "enter the month" << endl;
-				cin >> monthTest;
-				cout << "enter the day" << endl;
-				cin >> dayTest;
+				cout << "Enter the Year" << endl;
+				while (!(cin >> yearTest) || yearTest <= 2000 || yearTest >= 2021) {
+					cout << "Enter the Year:" << endl;
+					cin.clear();
+					cin.ignore(123, '\n');
+				}
+				cout << "Enter the Month:" << endl;
+				while (!(cin >> monthTest) || monthTest <= 0 || monthTest >= 13) {
+					cout << "Enter the Month:" << endl;
+					cin.clear();
+					cin.ignore(123, '\n');
+				}
+				cout << "Enter the day:" << endl;
+				while (!(cin >> dayTest) || dayTest <= 0 || dayTest >= 32) {
+					cout << "Enter the day:" << endl;
+					cin.clear();
+					cin.ignore(123, '\n');
+				}
 				expenses = filter.filter_date(expenses, yearTest, monthTest, dayTest, filterType());
 				break;
 			}
