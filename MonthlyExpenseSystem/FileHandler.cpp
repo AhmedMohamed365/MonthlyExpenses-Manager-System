@@ -141,7 +141,7 @@ void FileHandler:: saveExpense(string walletName,exspense_info info)
 		// this gets all the wallets names
 		//C:\\Users\\mercy\\source\\repos\\MonthlyExpenses-Manager-System\\MonthlyExpenseSystem\\Data
 		//C:\\Users\\ahmed\\source\\repos\\MonthlyExpenses-Manager-System\\MonthlyExpenseSystem\\Data
-		string path = "C:\\Users\\ahmed\\source\\repos\\MonthlyExpenses-Manager-System\\MonthlyExpenseSystem\\Data";
+		string path = "C:\\Users\\mercy\\source\\repos\\MonthlyExpenses-Manager-System\\MonthlyExpenseSystem\\Data";
 		for (const auto& entry : fs::directory_iterator(path))
 		{
 			foundedWallet = entry.path().filename().string();
@@ -183,7 +183,7 @@ void FileHandler:: saveExpense(string walletName,exspense_info info)
 		//C:\\Users\\ahmed\\source\\repos\\MonthlyExpenses - Manager - System\\MonthlyExpenseSystem\\Data
 
 
-		string path = "C:\\Users\\ahmed\\source\\repos\\MonthlyExpenses-Manager-System\\MonthlyExpenseSystem\\Data";
+		string path = "C:\\Users\\mercy\\source\\repos\\MonthlyExpenses-Manager-System\\MonthlyExpenseSystem\\Data";
 			
 		for (const auto& entry : fs::directory_iterator(path))
 		{
@@ -228,6 +228,7 @@ void FileHandler:: saveExpense(string walletName,exspense_info info)
 			cout << "Enter valid choice : ";
 			cin >> walletName;
 		}
+
 		int chosenWallet = stoi(walletName);
 		for (int i = 1; i < walletsNames.size() + 1; i++)
 
@@ -238,6 +239,10 @@ void FileHandler:: saveExpense(string walletName,exspense_info info)
 				break;
 			}
 
+		
+		if (chosenWallet == 4)
+			walletName = "4";
+	
 		return walletName;
 	}
 

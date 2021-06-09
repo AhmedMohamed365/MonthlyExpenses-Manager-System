@@ -111,20 +111,27 @@ bool menu()
 		}*/
 
 		//load all wallets' expenses
-		if (stoi(currentWallet) == handler.getNumberOfWallets() + 1)
-			loadAll(currentWallet, 2);
+		if (currentWallet == "4")
+		{
+			if (stoi(currentWallet) == handler.getNumberOfWallets() + 1)
+				loadAll(currentWallet, 2);
+		}
+		
 		else
 		{
 			//load the chosen wallet
-			
-			for (int i = 1; i < walletsNames.size() + 1; i++)
+			if (currentWallet == "4")
+			{
+				for (int i = 1; i < walletsNames.size() + 1; i++)
 
-				if (stoi(currentWallet) == i)
-				{
-					currentWallet = walletsNames[i - 1];
+					if (stoi(currentWallet) == i)
+					{
+						currentWallet = walletsNames[i - 1];
 
-					break;
-				}
+						break;
+					}
+			}
+				
 
 			LoadWithFilter(currentWallet);
 		}
@@ -395,13 +402,14 @@ void loadAll(string currentWallet,int number) {
 		filterChoice = tolower(filterChoice);
 		while (filterChoice == 'y')
 		{
-			cout << "in filter type you will be able to enter this choices" << endl;
-			cout << "1) = if u want to show equal to " << endl;
-			cout << "2) <> if u want to show not equal to " << endl;
-			cout << "3) <= if u want to show greater than or equal to " << endl;
-			cout << "4) >= if u want to show less than or equal to " << endl;
-			cout << "5) < if u want to show greater than " << endl;
-			cout << "6) > if u want to show less than " << endl;
+			cout << "In filter type you will be able to enter these choices : " << endl;
+			cout << "1) = if you want to show equal to " << endl;
+			cout << "2) <> if you want to show not equal to " << endl;
+			cout << "3) <= if you want to show less than or equal to " << endl;
+			cout << "4) >= if you want to show greater than or equal to " << endl;
+			cout << "5) < if you want to show less than " << endl;
+			cout << "6) > if you want to show greater than " << endl;
+
 			cout << "if you want to apply category filter enter y " << endl;
 			cin >> filterChoice;
 			filterChoice = tolower(filterChoice);
@@ -429,12 +437,24 @@ void loadAll(string currentWallet,int number) {
 			while (filterChoice == 'y')
 			{
 				int yearTest, monthTest, dayTest;
-				cout << "enter the year" << endl;
-				cin >> yearTest;
-				cout << "enter the month" << endl;
-				cin >> monthTest;
-				cout << "enter the day" << endl;
-				cin >> dayTest;
+				cout << "Enter the Year" << endl;
+				while (!(cin >> yearTest) || yearTest <= 2000 || yearTest >= 2021) {
+					cout << "Enter the Year:" << endl;
+					cin.clear();
+					cin.ignore(123, '\n');
+				}
+				cout << "Enter the Month:" << endl;
+				while (!(cin >> monthTest) || monthTest <= 0 || monthTest >= 13) {
+					cout << "Enter the Month:" << endl;
+					cin.clear();
+					cin.ignore(123, '\n');
+				}
+				cout << "Enter the day:" << endl;
+				while (!(cin >> dayTest) || dayTest <= 0 || dayTest >= 32) {
+					cout << "Enter the day:" << endl;
+					cin.clear();
+					cin.ignore(123, '\n');
+				}
 				expenses = filter.filter_date(expenses, yearTest, monthTest, dayTest, filterType());
 				break;
 			}
