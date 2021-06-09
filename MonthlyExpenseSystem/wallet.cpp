@@ -4,6 +4,7 @@
 #include "FileHandler.h"
 Wallet::Wallet()
 {
+	
 }
 
 Wallet::Wallet(string Walletname, int totalMoney)
@@ -13,6 +14,8 @@ Wallet::Wallet(string Walletname, int totalMoney)
 
 	FileHandler handler;
 	handler.makeWallet(WalletName);
+
+	
 }
 
 void Wallet::saveIncome(float income)

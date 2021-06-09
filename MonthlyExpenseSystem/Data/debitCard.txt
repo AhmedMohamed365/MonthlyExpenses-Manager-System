@@ -1,1 +1,1 @@
-1-1-2002,seha,seha,1,8799,sseha;8-8-2019,farh,farh,1,5600,farh;20-9-2021,h,hassan,1,400,ahmed hasssan;3-3-2021,3,3,3,3,3;
+1-1-2002,seha,seha,1,8799,sseha;8-8-2019,farh,farh,1,5600,farh;20-9-2021,h,hassan,1,400,ahmed hasssan;3-3-2021,3,3,3,3,3;1-1-2021,drink,diaries,5,13,milk;

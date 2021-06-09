@@ -16,6 +16,8 @@ private:
 	vector<Expense>  expenses;
 	float income;
 public:
+
+	
 	Wallet();
 	Wallet(string Walletname, int totalMoney);
 

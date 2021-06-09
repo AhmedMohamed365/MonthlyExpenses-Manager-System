@@ -111,20 +111,27 @@ bool menu()
 		}*/
 
 		//load all wallets' expenses
-		if (stoi(currentWallet) == handler.getNumberOfWallets() + 1)
-			loadAll(currentWallet, 2);
+		if (currentWallet == "4")
+		{
+			if (stoi(currentWallet) == handler.getNumberOfWallets() + 1)
+				loadAll(currentWallet, 2);
+		}
+		
 		else
 		{
 			//load the chosen wallet
-			
-			for (int i = 1; i < walletsNames.size() + 1; i++)
+			if (currentWallet == "4")
+			{
+				for (int i = 1; i < walletsNames.size() + 1; i++)
 
-				if (stoi(currentWallet) == i)
-				{
-					currentWallet = walletsNames[i - 1];
+					if (stoi(currentWallet) == i)
+					{
+						currentWallet = walletsNames[i - 1];
 
-					break;
-				}
+						break;
+					}
+			}
+				
 
 			LoadWithFilter(currentWallet);
 		}
