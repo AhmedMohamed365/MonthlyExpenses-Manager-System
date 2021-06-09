@@ -308,7 +308,7 @@ void LoadWithFilter(string currentWallet) {
 			expenses = filter.filter_category(expenses, categoryTest);
 			break;
 		}
-		cout << "if you want to apply amount filter enter y if " << endl;
+		cout << "if you want to apply amount filter enter y else press anything " << endl;
 		cin >> filterChoice;
 		filterChoice = tolower(filterChoice);
 		while (filterChoice == 'y')
@@ -324,20 +324,20 @@ void LoadWithFilter(string currentWallet) {
 			expenses = filter.filter_amount(expenses, amountTest, filterType());
 			break;
 		}
-		cout << "if you want to apply date filter enter y if not enter n?" << endl;
+		cout << "if you want to apply date filter enter y else press anything" << endl;
 		cin >> filterChoice;
 		while (filterChoice == 'y')
 		{
 			int yearTest, monthTest, dayTest;
 			cout << "Enter the year" << endl;
-			while (!(cin >> yearTest) || yearTest <= 2020 || yearTest >= 2100) {
+			while (!(cin >> yearTest) || yearTest <= 2000 || yearTest >= 2021) {
 				cout << "Enter the year:" << endl;
 				cin.clear();
 				cin.ignore(123, '\n');
 			}
 			
 			cout << "Enter the Month" << endl;
-			while (!(cin >> monthTest) || monthTest <= 0 || monthTest >= 31) {
+			while (!(cin >> monthTest) || monthTest <= 0 || monthTest >=13) {
 				cout << "Enter the month:" << endl;
 				cin.clear();
 				cin.ignore(123, '\n');
