@@ -67,7 +67,7 @@ public:
 	Wallet findWallet(string walletName);
 
 
-	string chooseWalletFile();
+	string chooseWalletFile(int);
 
 	vector<string> scanAllWallets();
 

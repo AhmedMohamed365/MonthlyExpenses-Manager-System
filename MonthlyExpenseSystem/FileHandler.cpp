@@ -1,9 +1,4 @@
-/*
- * FileHandler.cpp
- *
- *  Created on: May 25, 2021
- *      Author: Us
- */
+
 
 
 #include "FileHandler.h"
@@ -186,11 +181,11 @@ void FileHandler:: saveExpense(string walletName,exspense_info info)
 		// this gets all the wallets names
 		vector<string>wallets;
 		//C:\\Users\\ahmed\\source\\repos\\MonthlyExpenses - Manager - System\\MonthlyExpenseSystem\\Data
-
-		string path = "C:\\Users\\ahmed\\source\\repos\\MonthlyExpenses-Manager-System\\MonthlyExpenseSystem\\Data";
 		cout << "Enter 1 for cash wallet" << endl;
 		cout << "Enter 2 for credit card wallet" << endl;
 		cout << "Enter 3 for debit card wallet" << endl;
+		string path = "C:\\Users\\ahmed\\source\\repos\\MonthlyExpenses-Manager-System\\MonthlyExpenseSystem\\Data";
+		
 		for (const auto& entry : fs::directory_iterator(path))
 		{
 			string walletName = entry.path().filename().string();
@@ -208,29 +203,28 @@ void FileHandler:: saveExpense(string walletName,exspense_info info)
 		return wallets;
 	}
 
-	string FileHandler::chooseWalletFile()
+	string FileHandler::chooseWalletFile(int myChoice)
 	{
 		string walletName = "";
 
 		
 
 		vector<string> walletsNames = scanAllWallets();
-
-		cin >> walletName;
-		/* if (myChoice == 2)*/
+		 if (myChoice != 2)
 			 cout << "Enter 4 for all" << endl;
-		while (walletName != "1" && walletName != "2" && walletName != "3" && walletName != "4")
+		 cin >> walletName;
+		while (walletName != "1" && walletName != "2" && walletName != "3" )
 		{
-			/*bool flag = false;*/
-			/*if (myChoice == 2)*/
-				/*while (walletName != "1" && walletName != "2" && walletName != "3" && walletName != "4")
+			bool flag = false;
+			if (myChoice != 2)
+				while (walletName != "1" && walletName != "2" && walletName != "3" && walletName != "4")
 				{
 					cout << "Enter valid choice : ";
 					cin >> walletName;
 					flag = true;
 				}
 				if (flag == true)
-					break;*/
+					break;
 			cout << "Enter valid choice : ";
 			cin >> walletName;
 		}
