@@ -6,6 +6,7 @@
 #include "filter.h"
 using namespace std;
 string choice = "-1";
+int myChoice=-1;
 FileHandler handler;
 bool menu();
 exspense_info validData();
@@ -31,8 +32,7 @@ bool menu()
 	cout << "Enter 2 to enter daily expense " << endl;
 	cout << "Enter 3 to view expenses" << endl;
 	cout << "Enter 4 to view the remaining money " << endl;
-	cout<< "Enter 5 to insert money to a wallet " << endl;
-	cout << "Enter 6 to exit " << endl;
+	cout << "Enter 5 to exit " << endl;
 	cin >> choice;
 	if (choice == "1")
 	{
@@ -40,9 +40,8 @@ bool menu()
 		//string walletName = "";
 		
 		cout << "Enter the wallet name to save a new wallet with it's income\n ";
-
-		currentWallet = handler.chooseWalletFile();
-
+		myChoice = 1;
+		currentWallet = handler.chooseWalletFile(myChoice);
 		/*vector<string> choices = handler.scanAllWallets();
 		cout << endl;
 
@@ -81,7 +80,8 @@ bool menu()
 	else if (choice == "2")
 	{
 		
-		currentWallet = handler.chooseWalletFile();
+		myChoice = 2;
+		currentWallet = handler.chooseWalletFile(myChoice);
 		while (choice == "2")
 		{
 			//myChoice = 1;
@@ -146,7 +146,8 @@ bool menu()
 		Wallet wallet;
 		if (input == 1)
 		{
-			currentWallet = handler.chooseWalletFile();
+			myChoice = 4;
+			currentWallet = handler.chooseWalletFile(myChoice);
 			cout << "your ramaining money is : ";
 			cout << wallet.loadRemaning(currentWallet)  << "LE" << endl;
 		}
@@ -168,48 +169,48 @@ bool menu()
 		return true;
 	}
 
+	//else if (choice == "5")
+	//{
+	//	//this code edit the income  :  income += increase
+	//	string walletName = "";
+
+	//	cout << " choose the number of the  wallet to edit it\n";
+
+	//	vector<string> walletsNames = handler.scanAllWallets();
+	//	cout << endl;
+
+	//	cin >> walletName;
+	//	int chosenWallet = stoi(walletName);
+	//	for (int i = 1; i < walletsNames.size()+1; i++)
+
+	//		if (chosenWallet == i)
+	//		{
+	//			walletName = walletsNames[i - 1];
+
+	//			break;
+	//		}
+
+	//	float income = 0;
+
+	//	cin >> income;
+	//
+
+	//	if (income > 0)
+	//	{
+	//		if (walletName.find(".txt") == -1)//:
+	//			walletName = walletName + ".txt";
+
+	//		Wallet wallet;
+	//		wallet.increaseIncome(income, walletsNames ,chosenWallet );
+
+	//		float loaded = wallet.loadRemaning(walletName);
+	//		//green color
+	//		system("Color F2");
+	//			cout << "\nyour income is saved and loaded correctly it's now : " << loaded;
+	//		
+	//	}
+	//}
 	else if (choice == "5")
-	{
-		//this code edit the income  :  income += increase
-		string walletName = "";
-
-		cout << " choose the number of the  wallet to edit it\n";
-
-		vector<string> walletsNames = handler.scanAllWallets();
-		cout << endl;
-
-		cin >> walletName;
-		int chosenWallet = stoi(walletName);
-		for (int i = 1; i < walletsNames.size()+1; i++)
-
-			if (chosenWallet == i)
-			{
-				walletName = walletsNames[i - 1];
-
-				break;
-			}
-
-		float income = 0;
-
-		cin >> income;
-	
-
-		if (income > 0)
-		{
-			if (walletName.find(".txt") == -1)//:
-				walletName = walletName + ".txt";
-
-			Wallet wallet;
-			wallet.increaseIncome(income, walletsNames ,chosenWallet );
-
-			float loaded = wallet.loadRemaning(walletName);
-			//green color
-			system("Color F2");
-				cout << "\nyour income is saved and loaded correctly it's now : " << loaded;
-			
-		}
-	}
-	else if (choice == "6")
 	{
 		cout << "good bye"<<endl;
 		return false;
