@@ -99,18 +99,19 @@ bool menu()
 	{
 
 		int input = -1;
-
+		myChoice = 3;
 		
 		vector<string> walletsNames = handler.scanAllWallets();
+		currentWallet = handler.chooseWalletFile(myChoice);
 		cout << "Enter wallet number : ";
-		while (!(cin >> input) || input<1|| input >4 ) {
+	/*	while (!(cin >> input) || input<1|| input >4 ) {
 			cout << "Enter wallet number : ";
 			cin.clear();
 			cin.ignore(123, '\n');
-		}
+		}*/
 
 		//load all wallets' expenses
-		if (input == handler.getNumberOfWallets() + 1)
+		if (stoi(currentWallet) == handler.getNumberOfWallets() + 1)
 			loadAll(currentWallet, 2);
 		else
 		{
@@ -118,7 +119,7 @@ bool menu()
 			
 			for (int i = 1; i < walletsNames.size() + 1; i++)
 
-				if (input == i)
+				if (stoi(currentWallet) == i)
 				{
 					currentWallet = walletsNames[i - 1];
 
@@ -364,7 +365,7 @@ void LoadWithFilter(string currentWallet) {
 	{
 		if (i == 0)
 		{
-			cout << "Date" << '\t' << '\t' << "Name" << '\t' << "Category" << '\t' << "Amount" << '\t' << "Price" << '\t' << "Description" << endl;
+			cout << "Date" << '\t' << '\t' << "Name" << '\t' << '\t' << '\t' << "Category" << '\t' << "Amount" << '\t' << "Price" << '\t' << "Description" << endl;
 			cout << "-------------------------------------------------------------------" << endl;
 		}
 		expenses[i].display_data();
