@@ -141,7 +141,7 @@ void FileHandler:: saveExpense(string walletName,exspense_info info)
 		// this gets all the wallets names
 		//C:\\Users\\mercy\\source\\repos\\MonthlyExpenses-Manager-System\\MonthlyExpenseSystem\\Data
 		//C:\\Users\\ahmed\\source\\repos\\MonthlyExpenses-Manager-System\\MonthlyExpenseSystem\\Data
-		string path = "C:\\Users\\mercy\\source\\repos\\MonthlyExpenses-Manager-System\\MonthlyExpenseSystem\\Data";
+		string path = "C:\\Users\\ahmed\\source\\repos\\MonthlyExpenses-Manager-System\\MonthlyExpenseSystem\\Data";
 		for (const auto& entry : fs::directory_iterator(path))
 		{
 			foundedWallet = entry.path().filename().string();
@@ -183,13 +183,8 @@ void FileHandler:: saveExpense(string walletName,exspense_info info)
 		//C:\\Users\\ahmed\\source\\repos\\MonthlyExpenses - Manager - System\\MonthlyExpenseSystem\\Data
 
 
-		string path = "C:\\Users\\mercy\\source\\repos\\MonthlyExpenses-Manager-System\\MonthlyExpenseSystem\\Data";
-
-		cout << "Enter 1 for cash wallet" << endl;
-		cout << "Enter 2 for credit card wallet" << endl;
-		cout << "Enter 3 for debit card wallet" << endl;
-		
-		
+		string path = "C:\\Users\\ahmed\\source\\repos\\MonthlyExpenses-Manager-System\\MonthlyExpenseSystem\\Data";
+			
 		for (const auto& entry : fs::directory_iterator(path))
 		{
 			string walletName = entry.path().filename().string();
@@ -212,20 +207,21 @@ void FileHandler:: saveExpense(string walletName,exspense_info info)
 		string walletName = "";
 
 		
-
+		cout << "Enter 1 for cash wallet" << endl;
+		cout << "Enter 2 for credit card wallet" << endl;
+		cout << "Enter 3 for debit card wallet" << endl;
 		vector<string> walletsNames = scanAllWallets();
-		 if (myChoice != 2)
+		 if (myChoice == 3)
 			 cout << "Enter 4 for all" << endl;
 		 cin >> walletName;
 		while (walletName != "1" && walletName != "2" && walletName != "3" )
 		{
 			bool flag = false;
-			if (myChoice != 2)
-				while (walletName != "1" && walletName != "2" && walletName != "3" && walletName != "4")
+			if (myChoice == 3)
+				while (walletName != "1" && walletName != "2" && walletName != "3" && walletName == "4")
 				{
-					cout << "Enter valid choice : ";
-					cin >> walletName;
 					flag = true;
+					break;
 				}
 				if (flag == true)
 					break;
