@@ -141,7 +141,7 @@ void FileHandler:: saveExpense(string walletName,exspense_info info)
 		// this gets all the wallets names
 		//C:\\Users\\mercy\\source\\repos\\MonthlyExpenses-Manager-System\\MonthlyExpenseSystem\\Data
 		//C:\\Users\\ahmed\\source\\repos\\MonthlyExpenses-Manager-System\\MonthlyExpenseSystem\\Data
-		string path = "C:\\Users\\ahmed\\source\\repos\\MonthlyExpenses-Manager-System\\MonthlyExpenseSystem\\Data";
+		string path = "C:\\Users\\mercy\\source\\repos\\MonthlyExpenses-Manager-System\\MonthlyExpenseSystem\\Data";
 		for (const auto& entry : fs::directory_iterator(path))
 		{
 			foundedWallet = entry.path().filename().string();
@@ -181,6 +181,11 @@ void FileHandler:: saveExpense(string walletName,exspense_info info)
 		// this gets all the wallets names
 		vector<string>wallets;
 		//C:\\Users\\ahmed\\source\\repos\\MonthlyExpenses - Manager - System\\MonthlyExpenseSystem\\Data
+<<<<<<< HEAD
+
+		string path = "C:\\Users\\mercy\\source\\repos\\MonthlyExpenses-Manager-System\\MonthlyExpenseSystem\\Data";
+=======
+>>>>>>> 93aa2afdf109dbbfaf021ec2fbd066256888a338
 		cout << "Enter 1 for cash wallet" << endl;
 		cout << "Enter 2 for credit card wallet" << endl;
 		cout << "Enter 3 for debit card wallet" << endl;

@@ -155,8 +155,14 @@ bool menu()
 
 		else if (input == 2)
 		{
+
+			float total=0;
 			//This gets all money from all wallets - all expenses from all wallets 
-			cout << Wallet::getTotalMoney() - handler.totalPrices() << "LE" << endl;
+			vector<string> walletsNames = handler.scanAllWallets();
+			for (int i = 0; i < walletsNames.size(); i++)
+				total += wallet.loadRemaning(walletsNames[i]);
+
+				cout << total << "LE" << endl;
 		}
 		
 		
