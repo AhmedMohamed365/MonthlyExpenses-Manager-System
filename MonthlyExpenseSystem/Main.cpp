@@ -407,14 +407,13 @@ void loadAll(string currentWallet,int number) {
 		filterChoice = tolower(filterChoice);
 		while (filterChoice == 'y')
 		{
-			cout << "in filter type you will be able to enter this choices" << endl;
-			cout << "1) = if u want to show equal to " << endl;
-			cout << "2) <> if u want to show not equal to " << endl;
-			cout << "3) <= if u want to show greater than or equal to " << endl;
-			cout << "4) >= if u want to show less than or equal to " << endl;
-			cout << "5) < if u want to show greater than " << endl;
-			cout << "6) > if u want to show less than " << endl;
-			cout << "if you want to apply category filter enter y " << endl;
+			cout << "In filter type you will be able to enter these choices : " << endl;
+			cout << "1) = if you want to show equal to " << endl;
+			cout << "2) <> if you want to show not equal to " << endl;
+			cout << "3) <= if you want to show less than or equal to " << endl;
+			cout << "4) >= if you want to show greater than or equal to " << endl;
+			cout << "5) < if you want to show less than " << endl;
+			cout << "6) > if you want to show greater than " << endl;
 			cin >> filterChoice;
 			filterChoice = tolower(filterChoice);
 			while (filterChoice == 'y')
