@@ -19,8 +19,8 @@ string currentWallet = "cash.txt";
 
 // Eslam 
 int main() {
-	cout << "\t\t\t ****Welcome to Montly Expense System****\t\t\t " << endl;
-	cout << "\t\t\t  ***                MENU           ***\t\t\t  " << endl;
+	
+	cout << "\t\t\t\t\t ***                MENU           ***\t\t\t  " << endl;
 	while (menu());
 	return 0;
 }
@@ -87,9 +87,7 @@ bool menu()
 			//myChoice = 1;
 			handler.saveExpense(currentWallet,validData());
 			cout << "if you want to add another expense enter y" << endl;
-			cout << "if not enter n" << endl;
 			cin >> choice;
-
 			if (choice == "y"|| choice == "Y")
 				choice = "2";
 		}
@@ -103,15 +101,7 @@ bool menu()
 		
 		vector<string> walletsNames = handler.scanAllWallets();
 		currentWallet = handler.chooseWalletFile(myChoice);
-		cout << "Enter wallet number : ";
-	/*	while (!(cin >> input) || input<1|| input >4 ) {
-			cout << "Enter wallet number : ";
-			cin.clear();
-			cin.ignore(123, '\n');
-		}*/
-
-		//load all wallets' expenses
-		if (currentWallet == "4")
+		if (currentWallet == "4" )
 		{
 			if (stoi(currentWallet) == handler.getNumberOfWallets() + 1)
 				loadAll(currentWallet, 2);
@@ -145,9 +135,9 @@ bool menu()
 		cout <<"Enter 1 to choose specific wallet" << endl;
 		cout <<"Enter 2 to choose all wallets" << endl;
 		int input = -1;
-		cout << "Enter your choice:" << endl;
+		cout << "Enter your choice:"  ;
 		while (!(cin >> input) || input< 1||input>2) {
-			cout << "Enter your choice:" << endl;
+			cout << "Enter your choice:" ;
 			cin.clear();
 			cin.ignore(123, '\n');
 		}
@@ -176,48 +166,6 @@ bool menu()
 		
 		return true;
 	}
-
-	//else if (choice == "5")
-	//{
-	//	//this code edit the income  :  income += increase
-	//	string walletName = "";
-
-	//	cout << " choose the number of the  wallet to edit it\n";
-
-	//	vector<string> walletsNames = handler.scanAllWallets();
-	//	cout << endl;
-
-	//	cin >> walletName;
-	//	int chosenWallet = stoi(walletName);
-	//	for (int i = 1; i < walletsNames.size()+1; i++)
-
-	//		if (chosenWallet == i)
-	//		{
-	//			walletName = walletsNames[i - 1];
-
-	//			break;
-	//		}
-
-	//	float income = 0;
-
-	//	cin >> income;
-	//
-
-	//	if (income > 0)
-	//	{
-	//		if (walletName.find(".txt") == -1)//:
-	//			walletName = walletName + ".txt";
-
-	//		Wallet wallet;
-	//		wallet.increaseIncome(income, walletsNames ,chosenWallet );
-
-	//		float loaded = wallet.loadRemaning(walletName);
-	//		//green color
-	//		system("Color F2");
-	//			cout << "\nyour income is saved and loaded correctly it's now : " << loaded;
-	//		
-	//	}
-	//}
 	else if (choice == "5")
 	{
 		cout << "good bye"<<endl;
@@ -241,15 +189,15 @@ exspense_info validData()
 	getline(cin, description);
 	cout << "Enter exspense category:";
 	getline(cin, category);
-	cout << "Enter exspense amount:" << endl;
+	cout << "Enter exspense amount:" ;
 	while (!(cin >> amount) || amount <= 0) {
-		cout << "Enter exspense amount:" << endl;
+		cout << "Enter exspense amount:";
 		cin.clear();
 		cin.ignore(123, '\n');
 	}
-	cout << "Enter price amount:" << endl;
+	cout << "Enter exspense price :";
 	while (!(cin >> price) || price <= 0) {
-		cout << "Enter price amount:" << endl;
+		cout << "Enter exspense price :" ;
 		cin.clear();
 		cin.ignore(123, '\n');
 	}
@@ -260,27 +208,27 @@ exspense_info validData()
 		
 		cout << "you cant compelete this, no enough money "<<endl;
 		cout << "your remaining money : " << wallet.loadRemaning(currentWallet)- handler.totalExpenses(currentWallet) << " LE" <<endl;
-		cout << "you need : " << ((double)amount * price) << " LE " << endl;
+		cout << "items price : " << ((double)amount * price) << " LE " << endl;
 		exspense_info info(name, description, category, -1, price, day, month, year);
 		return info;
 	}
 	else
 	{
-		cout << "Enter the day:" << endl;
-		while (!(cin >> day) || day <= 0 || day >= 31) {
-			cout << "Enter the day:" << endl;
+		cout << "Enter the day:";
+		while (!(cin >> day) || day <= 0 || day > 31) {
+			cout << "Enter the day:";
 			cin.clear();
 			cin.ignore(123, '\n');
 		}
-		cout << "Enter the month:" << endl;
-		while (!(cin >> month) || month <= 0 || month >= 31) {
-			cout << "Enter the month:" << endl;
+		cout << "Enter the month:" ;
+		while (!(cin >> month) || month <= 0 || month > 12) {
+			cout << "Enter the month:";
 			cin.clear();
 			cin.ignore(123, '\n');
 		}
-		cout << "Enter the year:" << endl;
+		cout << "Enter the year:";
 		while (!(cin >> year) || year <= 2000 || year > 2021) {
-			cout << "Enter the year:" << endl;
+			cout << "Enter the year:" ;
 			cin.clear();
 			cin.ignore(123, '\n');
 		}
@@ -344,7 +292,7 @@ void LoadWithFilter(string currentWallet) {
 		{
 			int yearTest, monthTest, dayTest;
 			cout << "Enter the year" ;
-			while (!(cin >> yearTest) || yearTest <= 2000 || yearTest >= 2021) {
+			while (!(cin >> yearTest) || yearTest <= 2000 || yearTest > 2021) {
 				cout << "Enter the year:" ;
 				cin.clear();
 				cin.ignore(123, '\n');
@@ -368,14 +316,7 @@ void LoadWithFilter(string currentWallet) {
 		}
 		filterChoice = 'n';
 	}
-	
-	for (int i = 0; i < expenses.size(); i++)
-	{
-		
-	}
 }
-
-
 void loadAll(string currentWallet,int number) {
 	char filterChoice = 'n';
 
@@ -404,41 +345,39 @@ void loadAll(string currentWallet,int number) {
 		{
 			cout << "In filter type you will be able to enter these choices : " << endl;
 			cout << "1) = if you want to show equal to " << endl;
-			cout << "2) <> if you want to show not equal to " << endl;
-			cout << "3) <= if you want to show less than or equal to " << endl;
-			cout << "4) >= if you want to show greater than or equal to " << endl;
+			cout << "2) >= if you want to show greater than or equal to " << endl;
+			cout << "3) > if you want to show greater than " << endl;
+			cout << "4) <= if you want to show less than or equal to " << endl;
 			cout << "5) < if you want to show less than " << endl;
-			cout << "6) > if you want to show greater than " << endl;
-
-			cout << "if you want to apply category filter enter y " << endl;
+			cout << "if you want to apply category filter enter y else enter anything" << endl;
 			cin >> filterChoice;
 			filterChoice = tolower(filterChoice);
 			while (filterChoice == 'y')
 			{
-				cout << "Enter the category : " << endl;
+				cout << "Enter the category : " ;
 				string categoryTest;
 				cin >> categoryTest;
 				expenses = filter.filter_category(expenses, categoryTest);
 				break;
 			}
-			cout << "if you want to apply amount filter enter y if " << endl;
+			cout << "if you want to apply amount filter enter y else enter anything" ;
 			cin >> filterChoice;
 			filterChoice = tolower(filterChoice);
 			while (filterChoice == 'y')
 			{
-				cout << "Enter the amount : " << endl;
+				cout << "Enter the amount : ";
 				float  amountTest;
 				cin >> amountTest;
 				expenses = filter.filter_amount(expenses, amountTest, filterType());
 				break;
 			}
-			cout << "if you want to apply date filter enter y if not enter n?" << endl;
+			cout << "if you want to apply date filter enter y else  enter anything" << endl;
 			cin >> filterChoice;
 			while (filterChoice == 'y')
 			{
 				int yearTest, monthTest, dayTest;
 				cout << "Enter the Year" << endl;
-				while (!(cin >> yearTest) || yearTest <= 2000 || yearTest >= 2021) {
+				while (!(cin >> yearTest) || yearTest <= 2000 || yearTest > 2021) {
 					cout << "Enter the Year:" << endl;
 					cin.clear();
 					cin.ignore(123, '\n');
@@ -499,7 +438,7 @@ string filterType()
 	string expression;
 	cout << "Enter filter type : ";
 	cin >> expression;
-	while (expression !="<>"&&expression != ">" && expression != "<" && expression != "<=" &&  expression != ">=" && expression != "=")
+	while (expression != ">" && expression != "<" && expression != "<=" &&  expression != ">=" && expression != "=")
 	{
 		cout << "Enter valid choice :";
 		cin >> expression;

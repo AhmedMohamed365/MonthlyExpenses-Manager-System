@@ -1,1 +1,1 @@
-1-1-2021,burger,dasd,20,10,green;1-1-2021,burger,dasd,6,10,green;
+2-2-2021,2,2,2,2,2;
